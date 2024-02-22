@@ -1,0 +1,54 @@
+package com.JavaATM.main;
+
+import java.util.Scanner;
+
+public class Disclaimer {
+	
+	private Scanner scan = new Scanner(System.in);
+	private LandingPage landing;
+
+	public void displayDisclaimer() {
+		System.out.println(""
+				+ "*********************************************************************************************************************************************************\r\n"
+				+ "Disclaimer: This ATM console project is created for personal learning and development purposes only. It is not intended to represent or emulate the \r\n"
+				+ "functioning of any actual ATM machines or banking systems. The functionalities and features implemented in this project are purely for educational \r\n"
+				+ "experimentation and exploration of programming concepts. This project does not involve any real banking operations or transactions. It should not \r\n"
+				+ "be used for any commercial or monetary purposes. The creator of this project shall not be held responsible for any misuse or misinterpretation of the code,\r\n"
+				+ "and users are solely responsible for their actions while interacting with this software. By using this ATM console project, you acknowledge that it is\r\n"
+				+ "a simulated environment and not a real banking system. Any resemblance to actual ATM machines or banking interfaces is purely coincidental. Please use\r\n"
+				+ "this project responsibly and ethically, and refrain from attempting to use it for any unauthorized or unlawful activities. The creator disclaims any \r\n"
+				+ "liability for any damages or consequences arising from the use or misuse of this software.\r\n"
+				+ "*********************************************************************************************************************************************************\r\n"
+				+ "\n"
+				+ "Please input (y) if you agree and (n) if you disagree: ");
+	}
+	
+	public void disclaimerChoice() {
+		int retry = 0;
+		
+		while (true) {
+			char choice = scan.next().charAt(0);
+			
+			switch (choice) {
+			case 'y':
+				landing.startLandingPage();
+				break;
+			case 'n':
+				System.out.println("Exiting application...");
+				System.exit(0);
+				break;
+			default:
+				retry++;
+				if (retry == 3) {
+	                System.out.println("Multiple invalid inputs detected. Exiting application...");
+	                System.exit(0);
+	            }
+				System.out.println("Invalid input. Please try again");
+			}
+		}
+	}
+	
+	public void setLanding(LandingPage landing) {
+		this.landing = landing;
+	}
+}
