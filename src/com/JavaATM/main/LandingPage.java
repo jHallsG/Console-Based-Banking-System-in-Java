@@ -1,52 +1,80 @@
 package com.JavaATM.main;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class LandingPage {
 	
-	Scanner scan = new Scanner(System.in);
-	
+	private Scanner scan = new Scanner(System.in);
 	
 	public void startLandingPage() {
-		System.out.println("\n\nWelcome to XYZ Banking. What do you want to do today?\n\n"
+		boolean landingPageLoop = true;
+		int retry = 0;
+		int loginCredsRetry = 0;
+		
+		System.out.print("\n\nWelcome to XYZ Banking.\n"
+				+ "What do you want to do today?\n"
 				+ "1.		Login\r\n"
 				+ "2. 		Register\r\n"
 				+ "3. 		Exit\r\n"
-				+ "\n"
 				+ ">> ");
-	}
-	
-	public void landingPageOptions() {
-		int retry = 0;
-		char options = scan.next().charAt(0);
 		
-		while (true) {
-			switch (options) {
-			case 1:
-				login();
-				break;
-			case 2:
-				System.out.println("to be continued to register");
-			case 3:
-				System.out.println("Exiting application...");
-				System.exit(0);
-			default:
+		while (landingPageLoop) {
+			try {
+				int options = scan.nextInt();
+				switch (options) {
+				case 1:
+					if (login() == true) {
+						System.out.println("\nContinue to user page");
+					} else {
+						loginCredsRetry++;
+						if (loginCredsRetry == 3) {
+							System.out.println("Multiple invalid credentials input.Exiting application...");
+						}
+						System.out.println("\nIncorrect email/password. Please try again.\n>> ");
+					}
+					
+					landingPageLoop = false;
+					break;
+				case 2:
+					System.out.println("to be continued to register");
+				case 3:
+					System.out.println("Exiting application...");
+					System.exit(0);
+				default:
+					retry++;
+					if (retry == 3) {
+						System.out.println("\nMultiple invalid inputs detected. Exiting application...");
+		                System.exit(0);
+					}
+					System.out.print("\nInvalid input. Please try again: \n>> ");
+				}
+			} catch (InputMismatchException e) {
 				retry++;
 				if (retry == 3) {
-	                System.out.println("Multiple invalid inputs detected. Exiting application...");
+					System.out.println("\nMultiple invalid inputs detected. Exiting application...");
 	                System.exit(0);
-	            }
-				System.out.println("Invalid input. Please try again");	
+				}
+				System.out.print("\nInvalid input. Please try again. \n>> ");	
+				scan.next(); //need to clear the input or the program will run in an infinite loop.
 			}
 		}
 	}
 	
-	public void login() {
-		System.out.println("Please enter your email address: ");
+	public boolean login() {
+		System.out.print("\nPlease enter your email address: \n>> ");
+		scan.nextLine();	//dont't delete. somehow scanner detects the newline \n as an input
+		
 		String username = scan.nextLine();
 		
-		System.out.println("Please enter your password: ");
+		System.out.print("\nPlease enter your password: \n>> ");
 		String pass = scan.nextLine();
-		scan.close();
+		
+		// check credentials on the database. it should return a true or false
+		if (username.equals("wrong")) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 }

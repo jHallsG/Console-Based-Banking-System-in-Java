@@ -10,6 +10,5 @@ public class Main {
 		Disclaimer disc = context.getBean("disclaimer", Disclaimer.class);
 		
 		disc.displayDisclaimer();
-		disc.disclaimerChoice();
 	}
 }

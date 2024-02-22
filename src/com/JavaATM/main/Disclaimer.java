@@ -3,12 +3,14 @@ package com.JavaATM.main;
 import java.util.Scanner;
 
 public class Disclaimer {
-	
 	private Scanner scan = new Scanner(System.in);
 	private LandingPage landing;
 
 	public void displayDisclaimer() {
-		System.out.println(""
+		boolean disclaimerLoop = true;
+		int retry = 0;
+
+		System.out.print(""
 				+ "*********************************************************************************************************************************************************\r\n"
 				+ "Disclaimer: This ATM console project is created for personal learning and development purposes only. It is not intended to represent or emulate the \r\n"
 				+ "functioning of any actual ATM machines or banking systems. The functionalities and features implemented in this project are purely for educational \r\n"
@@ -20,18 +22,15 @@ public class Disclaimer {
 				+ "liability for any damages or consequences arising from the use or misuse of this software.\r\n"
 				+ "*********************************************************************************************************************************************************\r\n"
 				+ "\n"
-				+ "Please input (y) if you agree and (n) if you disagree: ");
-	}
-	
-	public void disclaimerChoice() {
-		int retry = 0;
+				+ "Please input (y) if you agree and (n) if you disagree: \n>> ");
 		
-		while (true) {
+		while (disclaimerLoop) {
 			char choice = scan.next().charAt(0);
 			
 			switch (choice) {
 			case 'y':
 				landing.startLandingPage();
+				disclaimerLoop = false;
 				break;
 			case 'n':
 				System.out.println("Exiting application...");
@@ -40,10 +39,10 @@ public class Disclaimer {
 			default:
 				retry++;
 				if (retry == 3) {
-	                System.out.println("Multiple invalid inputs detected. Exiting application...");
+	                System.out.println("\nMultiple invalid inputs detected. Exiting application...");
 	                System.exit(0);
 	            }
-				System.out.println("Invalid input. Please try again");
+				System.out.print("\nInvalid input. Please try again: \n>> ");
 			}
 		}
 	}
