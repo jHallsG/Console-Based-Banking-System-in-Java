@@ -2,11 +2,16 @@ package com.JavaATM.main;
 
 import java.util.Scanner;
 
-public class Disclaimer {
+public class DisclaimerDisplay implements ConsoleDisplays{
 	private Scanner scan = new Scanner(System.in);
-	private LandingPage landing;
+	private WelcomeDisplay welcome;
+	private ManageDisplay manage;
+	
+	public DisclaimerDisplay() {
+		show();
+	}
 
-	public void displayDisclaimer() {
+	public void show() {
 		boolean disclaimerLoop = true;
 		int retry = 0;
 
@@ -29,7 +34,8 @@ public class Disclaimer {
 			
 			switch (choice) {
 			case 'y':
-				landing.startLandingPage();
+				manage.pushDisplay(welcome);
+				manage.showDisplay();
 				disclaimerLoop = false;
 				break;
 			case 'n':
@@ -47,7 +53,11 @@ public class Disclaimer {
 		}
 	}
 	
-	public void setLanding(LandingPage landing) {
-		this.landing = landing;
+	public void setWelcome(WelcomeDisplay welcome) {
+		this.welcome = welcome;
+	}
+	
+	public void setManage(ManageDisplay manage) {
+		this.manage = manage;
 	}
 }

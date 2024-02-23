@@ -3,7 +3,10 @@ package com.JavaATM.main;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class LandingPage implements ConsoleDisplays{
+import org.springframework.stereotype.Component;
+
+@Component("welcomeDisplay")
+public class WelcomeDisplay implements ConsoleDisplays{
 	
 	private Scanner scan = new Scanner(System.in);
 	
