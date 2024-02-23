@@ -14,11 +14,6 @@ public class ConfigClass {
 		return disc;
 	}
 	
-	@Bean 
-	public LandingPage landingPage() {
-		return new LandingPage();
-	}
-	
 	@Bean
 	public ManageDisplay manageDisplay() {
 		return new ManageDisplay();
@@ -31,6 +26,19 @@ public class ConfigClass {
 	
 	@Bean
 	public WelcomeDisplay welcomeDisplay() {
-		return new WelcomeDisplay();
+		WelcomeDisplay welcome = new WelcomeDisplay();
+		welcome.setLogin(loginDisplay());
+		welcome.setManage(manageDisplay());
+		welcome.setReg(regDisplay());
+		return welcome;
+	}
+	
+	@Bean
+	public LoginDisplay loginDisplay() {
+		return new LoginDisplay();
+	}
+	
+	@Bean RegisterDisplay regDisplay() {
+		return new RegisterDisplay();
 	}
 }

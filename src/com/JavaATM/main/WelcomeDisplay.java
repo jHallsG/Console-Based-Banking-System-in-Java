@@ -5,11 +5,13 @@ import java.util.Scanner;
 
 import org.springframework.stereotype.Component;
 
-@Component("welcomeDisplay")
 public class WelcomeDisplay implements ConsoleDisplays{
 	
 	private Scanner scan = new Scanner(System.in);
-	
+	private LoginDisplay login;
+	private RegisterDisplay reg;
+	private ManageDisplay manage;
+
 	public void show() {
 		boolean landingPageLoop = true;
 		int retry = 0;
@@ -27,22 +29,15 @@ public class WelcomeDisplay implements ConsoleDisplays{
 				int options = scan.nextInt();
 				switch (options) {
 				case 1:
-					if (login() == true) {
-						System.out.println("\nContinue to user page");
-					} else {
-						loginCredsRetry++;
-						if (loginCredsRetry == 3) {
-							System.out.println("Multiple invalid credentials input.Exiting application...");
-						}
-						System.out.println("\nIncorrect email/password. Please try again.\n>> ");
-					}
-					
+					manage.pushDisplay(login);
 					landingPageLoop = false;
 					break;
 				case 2:
-					System.out.println("to be continued to register");
+					manage.pushDisplay(reg);
+					landingPageLoop = false;
+					break;
 				case 3:
-					System.out.println("Exiting application...");
+					System.out.println("\nExiting application...");
 					System.exit(0);
 				default:
 					retry++;
@@ -64,20 +59,15 @@ public class WelcomeDisplay implements ConsoleDisplays{
 		}
 	}
 	
-	public boolean login() {
-		System.out.print("\nPlease enter your email address: \n>> ");
-		scan.nextLine();	//dont't delete. somehow scanner detects the newline \n as an input
-		
-		String username = scan.nextLine();
-		
-		System.out.print("\nPlease enter your password: \n>> ");
-		String pass = scan.nextLine();
-		
-		// check credentials on the database. it should return a true or false
-		if (username.equals("wrong")) {
-			return false;
-		} else {
-			return true;
-		}
+	public void setManage(ManageDisplay manage) {
+		this.manage = manage;
+	}
+
+	public void setLogin(LoginDisplay login) {
+		this.login = login;
+	}
+	
+	public void setReg(RegisterDisplay reg) {
+		this.reg = reg;
 	}
 }

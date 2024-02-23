@@ -6,10 +6,6 @@ public class DisclaimerDisplay implements ConsoleDisplays{
 	private Scanner scan = new Scanner(System.in);
 	private WelcomeDisplay welcome;
 	private ManageDisplay manage;
-	
-	public DisclaimerDisplay() {
-		show();
-	}
 
 	public void show() {
 		boolean disclaimerLoop = true;
@@ -35,7 +31,6 @@ public class DisclaimerDisplay implements ConsoleDisplays{
 			switch (choice) {
 			case 'y':
 				manage.pushDisplay(welcome);
-				manage.showDisplay();
 				disclaimerLoop = false;
 				break;
 			case 'n':
@@ -52,11 +47,10 @@ public class DisclaimerDisplay implements ConsoleDisplays{
 			}
 		}
 	}
-	
 	public void setWelcome(WelcomeDisplay welcome) {
 		this.welcome = welcome;
 	}
-	
+
 	public void setManage(ManageDisplay manage) {
 		this.manage = manage;
 	}
