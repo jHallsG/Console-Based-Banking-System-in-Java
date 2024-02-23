@@ -2,10 +2,16 @@ package com.JavaATM.main;
 
 import java.util.Scanner;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component()
 public class DisclaimerDisplay implements ConsoleDisplays{
 	private Scanner scan = new Scanner(System.in);
-	private WelcomeDisplay welcome;
-	private ManageDisplay manage;
+	@Autowired
+	private WelcomeDisplay welcomeDisplay;
+	@Autowired
+	private ManageDisplay manageDisplay;
 
 	public void show() {
 		boolean disclaimerLoop = true;
@@ -30,7 +36,7 @@ public class DisclaimerDisplay implements ConsoleDisplays{
 			
 			switch (choice) {
 			case 'y':
-				manage.pushDisplay(welcome);
+				manageDisplay.pushDisplay(welcomeDisplay);
 				disclaimerLoop = false;
 				break;
 			case 'n':
@@ -46,12 +52,5 @@ public class DisclaimerDisplay implements ConsoleDisplays{
 				System.out.print("\nInvalid input. Please try again: \n>> ");
 			}
 		}
-	}
-	public void setWelcome(WelcomeDisplay welcome) {
-		this.welcome = welcome;
-	}
-
-	public void setManage(ManageDisplay manage) {
-		this.manage = manage;
 	}
 }

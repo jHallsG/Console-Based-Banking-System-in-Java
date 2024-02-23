@@ -4,6 +4,7 @@ import java.util.Stack;
 
 import org.springframework.stereotype.Component;
 
+@Component
 public class ManageDisplay {
 	
 	private Stack<ConsoleDisplays> displayStack = new Stack<ConsoleDisplays>();

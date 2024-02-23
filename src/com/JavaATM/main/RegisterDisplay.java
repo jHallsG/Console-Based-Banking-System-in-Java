@@ -2,6 +2,9 @@ package com.JavaATM.main;
 
 import java.util.Scanner;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class RegisterDisplay implements ConsoleDisplays{
 
 Scanner scan = new Scanner(System.in);
@@ -19,7 +22,5 @@ Scanner scan = new Scanner(System.in);
 		System.out.print("\nPlease re-enter your password: \n>> ");
 		scan.nextLine();
 		String pass2 = scan.nextLine();
-			
 	}
-
 }

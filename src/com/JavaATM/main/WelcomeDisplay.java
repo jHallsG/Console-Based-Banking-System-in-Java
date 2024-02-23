@@ -3,14 +3,19 @@ package com.JavaATM.main;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+@Component
 public class WelcomeDisplay implements ConsoleDisplays{
 	
 	private Scanner scan = new Scanner(System.in);
-	private LoginDisplay login;
-	private RegisterDisplay reg;
-	private ManageDisplay manage;
+	@Autowired
+	private LoginDisplay loginDisplay;
+	@Autowired
+	private RegisterDisplay registerDisplay;
+	@Autowired
+	private ManageDisplay manageDisplay;
 
 	public void show() {
 		boolean landingPageLoop = true;
@@ -29,11 +34,11 @@ public class WelcomeDisplay implements ConsoleDisplays{
 				int options = scan.nextInt();
 				switch (options) {
 				case 1:
-					manage.pushDisplay(login);
+					manageDisplay.pushDisplay(loginDisplay);
 					landingPageLoop = false;
 					break;
 				case 2:
-					manage.pushDisplay(reg);
+					manageDisplay.pushDisplay(registerDisplay);
 					landingPageLoop = false;
 					break;
 				case 3:
@@ -57,17 +62,5 @@ public class WelcomeDisplay implements ConsoleDisplays{
 				scan.next(); //need to clear the input or the program will run in an infinite loop.
 			}
 		}
-	}
-	
-	public void setManage(ManageDisplay manage) {
-		this.manage = manage;
-	}
-
-	public void setLogin(LoginDisplay login) {
-		this.login = login;
-	}
-	
-	public void setReg(RegisterDisplay reg) {
-		this.reg = reg;
 	}
 }

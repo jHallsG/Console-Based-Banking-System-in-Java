@@ -7,11 +7,16 @@ public class Main {
 
 	public static void main(String[] args) {
 		ApplicationContext context = new AnnotationConfigApplicationContext(ConfigClass.class);
-		DisclaimerDisplay disclaimer = context.getBean("disclaimer",DisclaimerDisplay.class);
+		DisclaimerDisplay disclaimer = context.getBean("disclaimerDisplay",DisclaimerDisplay.class);
 		
 		disclaimer.show();
 		
-		
-		 
+//		// Get all bean names
+//        String[] beanNames = context.getBeanDefinitionNames();
+//
+//        // Print all bean names
+//        for (String beanName : beanNames) {
+//            System.out.println(beanName);
+//        }
 	}
 }
