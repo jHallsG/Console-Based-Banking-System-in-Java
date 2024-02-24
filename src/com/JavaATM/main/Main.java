@@ -2,6 +2,7 @@ package com.JavaATM.main;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.AbstractApplicationContext;
 
 public class Main {
 
@@ -18,5 +19,6 @@ public class Main {
 //        for (String beanName : beanNames) {
 //            System.out.println(beanName);
 //        }
+		((AnnotationConfigApplicationContext) context).close();
 	}
 }
