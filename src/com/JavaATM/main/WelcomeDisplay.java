@@ -22,22 +22,24 @@ public class WelcomeDisplay implements ConsoleDisplays{
 		int retry = 0;
 		int loginCredsRetry = 0;
 		
-		System.out.print("\n\nWelcome to XYZ Banking.\n"
+		System.out.print("\n\nWelcome to XYZ Banking.\r\n"
 				+ "What do you want to do today?\n"
-				+ "1.		Login\r\n"
-				+ "2. 		Register\r\n"
-				+ "3. 		Exit\r\n"
-				+ ">> ");
+				+ "1.		Login\n"
+				+ "2. 		Register\n"
+				+ "3. 		Exit\n"
+				+ ">> \r");
 		
 		while (landingPageLoop) {
 			try {
 				int options = scan.nextInt();
 				switch (options) {
 				case 1:
+					new ClearConsoleScreen();
 					manageDisplay.pushDisplay(loginDisplay);
 					landingPageLoop = false;
 					break;
 				case 2:
+					new ClearConsoleScreen();
 					manageDisplay.pushDisplay(registerDisplay);
 					landingPageLoop = false;
 					break;

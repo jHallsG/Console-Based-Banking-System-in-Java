@@ -2,12 +2,17 @@ package com.JavaATM.main;
 
 import java.util.Scanner;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class LoginDisplay implements ConsoleDisplays{
 
 	Scanner scan = new Scanner(System.in);
+	@Autowired
+	ManageDisplay manageDisplay;
+	@Autowired
+	UserDisplay userDisplay;
 	
 	@Override
 	public void show() {
@@ -16,10 +21,16 @@ public class LoginDisplay implements ConsoleDisplays{
 			
 		System.out.print("\nPlease enter your password: \n>> ");
 		String pass = scan.nextLine();
+		
+		authenticateSuccessfulLogin();
 	}
 	
-	public boolean authenticateSuccessfulLogin() {
-		return true;
+	public void authenticateSuccessfulLogin() {
+		//insert login credentials checking code here =========>>>
+		
+		new ClearConsoleScreen();
+		manageDisplay.pushDisplay(userDisplay);
+		
 	}
 
 }

@@ -36,11 +36,12 @@ public class DisclaimerDisplay implements ConsoleDisplays{
 			
 			switch (choice) {
 			case 'y':
+				new ClearConsoleScreen();
 				manageDisplay.pushDisplay(welcomeDisplay);
 				disclaimerLoop = false;
 				break;
 			case 'n':
-				System.out.println("Exiting application...");
+				System.out.println("\nExiting application...");
 				System.exit(0);
 				break;
 			default:
