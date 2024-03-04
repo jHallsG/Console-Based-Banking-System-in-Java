@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserDisplay implements ConsoleDisplays{
 
-	Scanner scan = new Scanner(System.in);
+	private Scanner scan = new Scanner(System.in);
 	
 	@Override
 	public void show() {

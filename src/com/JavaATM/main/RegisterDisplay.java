@@ -7,9 +7,11 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class RegisterDisplay implements ConsoleDisplays{
+	
+	private Scanner scan = new Scanner(System.in);
+	
 	@Autowired
 	private ManageDisplay manageDisplay;
-	Scanner scan = new Scanner(System.in);
 	
 	@Override
 	public void show() {

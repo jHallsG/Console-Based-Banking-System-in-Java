@@ -7,7 +7,9 @@ import org.springframework.stereotype.Component;
 
 @Component()
 public class DisclaimerDisplay implements ConsoleDisplays{
+
 	private Scanner scan = new Scanner(System.in);
+	
 	@Autowired
 	private WelcomeDisplay welcomeDisplay;
 	@Autowired
@@ -16,7 +18,6 @@ public class DisclaimerDisplay implements ConsoleDisplays{
 	public void show() {
 		boolean disclaimerLoop = true;
 		int retry = 0;
-
 		System.out.print(""
 				+ "*********************************************************************************************************************************************************\r\n"
 				+ "Disclaimer: This ATM console project is created for personal learning and development purposes only. It is not intended to represent or emulate the \r\n"
@@ -42,13 +43,13 @@ public class DisclaimerDisplay implements ConsoleDisplays{
 				break;
 			case 'n':
 				System.out.println("\nExiting application...");
-				System.exit(0);
-				break;
+				//disclaimerLoop = false;
+				return;
 			default:
 				retry++;
 				if (retry == 3) {
 	                System.out.println("\nMultiple invalid inputs detected. Exiting application...");
-	                System.exit(0);
+	                return;
 	            }
 				System.out.print("\nInvalid input. Please try again: \n>> ");
 			}

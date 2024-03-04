@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 public class WelcomeDisplay implements ConsoleDisplays{
 	
 	private Scanner scan = new Scanner(System.in);
+	
 	@Autowired
 	private LoginDisplay loginDisplay;
 	@Autowired

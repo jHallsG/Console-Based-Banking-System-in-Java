@@ -8,7 +8,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class LoginDisplay implements ConsoleDisplays{
 
-	Scanner scan = new Scanner(System.in);
+	private Scanner scan = new Scanner(System.in);
+	
 	@Autowired
 	ManageDisplay manageDisplay;
 	@Autowired
