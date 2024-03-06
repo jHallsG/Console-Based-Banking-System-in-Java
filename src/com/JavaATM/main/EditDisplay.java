@@ -9,6 +9,10 @@ public class EditDisplay implements ConsoleDisplays{
 	
 	private Scanner scan = new Scanner(System.in);
 	@Autowired
+	ChangePasswordDisplay changePasswordDisplay;
+	@Autowired
+	ChangeUsernameDisplay changeUsernameDisplay;
+	@Autowired
 	private ManageDisplay manageDisplay;
 	
 	@Override
@@ -30,42 +34,19 @@ public class EditDisplay implements ConsoleDisplays{
 			
 			switch (userChoice) {
 			case '1':
-				while(innerLoop) {
-					System.out.print("\nEnter desired username: ");
-					String username = scan.nextLine();
-					
-					System.out.print("\nConfirm username: ");
-					String confirmUsername = scan.nextLine();
-					
-					if (username.equals(confirmUsername)) {
-						
-						// update username on database //
-						
-						System.out.println("\nUsername successfully updated!");
-						try {
-							Thread.sleep(1000);
-						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						innerLoop = false;
-						editLoop = false;
-						new ClearConsoleScreen();
-						manageDisplay.popDisplay();
-					} else {
-						System.out.println("\nUsername mismatch. Please try again!");
-						continue;
-					}
-				}
+				new ClearConsoleScreen();
+				manageDisplay.pushDisplay(changeUsernameDisplay);
 				break;
 				
-				
 			case '2':
-				System.out.println("Show change password");
+				new ClearConsoleScreen();
+				manageDisplay.pushDisplay(changePasswordDisplay);
 				break;
 				
 			case '3':
-				return;
+				new ClearConsoleScreen();
+				manageDisplay.popDisplay();
+				break;
 				
 			default:
 				retry++;
