@@ -32,19 +32,19 @@ public class WelcomeDisplay implements ConsoleDisplays{
 		
 		while (landingPageLoop) {
 			try {
-				int options = scan.nextInt();
+				char options = scan.next().charAt(0);
 				switch (options) {
-				case 1:
+				case '1':
 					new ClearConsoleScreen();
 					manageDisplay.pushDisplay(loginDisplay);
 					landingPageLoop = false;
 					break;
-				case 2:
+				case '2':
 					new ClearConsoleScreen();
 					manageDisplay.pushDisplay(registerDisplay);
 					landingPageLoop = false;
 					break;
-				case 3:
+				case '3':
 					System.out.println("\nExiting application...");
 					System.exit(0);
 				default:

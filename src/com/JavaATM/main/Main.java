@@ -8,8 +8,8 @@ public class Main {
 
 	public static void main(String[] args) {
 		ApplicationContext context = new AnnotationConfigApplicationContext(ConfigClass.class);
-//		DisclaimerDisplay disclaimer = context.getBean("disclaimerDisplay",DisclaimerDisplay.class);
-		EditDisplay disclaimer = context.getBean("editDisplay",EditDisplay.class);
+		DisclaimerDisplay disclaimer = context.getBean("disclaimerDisplay",DisclaimerDisplay.class);
+//		EditDisplay disclaimer = context.getBean("editDisplay",EditDisplay.class);
 		
 		disclaimer.show();
 		

@@ -2,15 +2,18 @@ package com.JavaATM.main;
 
 import java.util.Scanner;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 @Component
 public class EditDisplay implements ConsoleDisplays{
 	
 	private Scanner scan = new Scanner(System.in);
+	@Autowired
+	private ManageDisplay manageDisplay;
 	
 	@Override
 	public void show() {
-		
+		boolean innerLoop = true;
 		boolean editLoop = true;
 		int retry = 0;
 		
@@ -23,30 +26,45 @@ public class EditDisplay implements ConsoleDisplays{
 
 		while(editLoop) {
 			char userChoice = scan.next().charAt(0);
+			scan.nextLine();
+			
 			switch (userChoice) {
-			case 1:
-				System.out.print("\nEnter desired username: ");
-				String username = scan.nextLine();
-				System.out.print("\nConfirm username: ");
-				String confirmUsername = scan.nextLine();
-				
-				if (username.equals(confirmUsername)) {
+			case '1':
+				while(innerLoop) {
+					System.out.print("\nEnter desired username: ");
+					String username = scan.nextLine();
 					
-					// update username on database //
+					System.out.print("\nConfirm username: ");
+					String confirmUsername = scan.nextLine();
 					
-					System.out.println("Username successfully updated!");
-					editLoop = false;
-					break;
-				} else {
-					System.out.println("Username mismatch. Please try again!");
-					break;
+					if (username.equals(confirmUsername)) {
+						
+						// update username on database //
+						
+						System.out.println("\nUsername successfully updated!");
+						try {
+							Thread.sleep(1000);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						innerLoop = false;
+						editLoop = false;
+						new ClearConsoleScreen();
+						manageDisplay.popDisplay();
+					} else {
+						System.out.println("\nUsername mismatch. Please try again!");
+						continue;
+					}
 				}
+				break;
 				
-			case 2:
+				
+			case '2':
 				System.out.println("Show change password");
 				break;
 				
-			case 3:
+			case '3':
 				return;
 				
 			default:
