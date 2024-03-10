@@ -6,21 +6,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class LoginDisplay implements ConsoleDisplays{
+public class LoginDisplay extends ParentClass{
+	
+	public LoginDisplay(ManageDisplay manageDisplay, UserDisplay userDisplay) {
+		super(manageDisplay, userDisplay);
+	}
 
-	private Scanner scan = new Scanner(System.in);
-	
-	@Autowired
-	ManageDisplay manageDisplay;
-	@Autowired
-	UserDisplay userDisplay;
-	
 	@Override
 	public void show() {
-		System.out.print("\nPlease enter your email address: \n>> ");
+		System.out.print(""
+				+ "+----------------------------------+\n"
+				+ "| Please enter your email address: |\n"
+				+ "+----------------------------------+\n"
+				+ "\n>> ");
 		String username = scan.nextLine();
 			
-		System.out.print("\nPlease enter your password: \n>> ");
+		System.out.print("\n"
+				+ "+----------------------------------+\n"
+				+ "| Please enter your password:      |\n"
+				+ "+----------------------------------+\n"
+				+ "\n>> ");
 		String pass = scan.nextLine();
 		
 		authenticateSuccessfulLogin();

@@ -1,34 +1,30 @@
 package com.JavaATM.main;
 
-import java.util.Scanner;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component()
-public class DisclaimerDisplay implements ConsoleDisplays{
+public class DisclaimerDisplay extends ParentClass{
 
-	private Scanner scan = new Scanner(System.in);
-	
-	@Autowired
-	private WelcomeDisplay welcomeDisplay;
-	@Autowired
-	private ManageDisplay manageDisplay;
+	public DisclaimerDisplay(ManageDisplay manageDisplay, WelcomeDisplay welcomeDisplay) {
+		super(manageDisplay, welcomeDisplay);
+	}
 
 	public void show() {
 		boolean disclaimerLoop = true;
 		int retry = 0;
 		System.out.print(""
-				+ "*********************************************************************************************************************************************************\r\n"
-				+ "Disclaimer: This ATM console project is created for personal learning and development purposes only. It is not intended to represent or emulate the \r\n"
-				+ "functioning of any actual ATM machines or banking systems. The functionalities and features implemented in this project are purely for educational \r\n"
-				+ "experimentation and exploration of programming concepts. This project does not involve any real banking operations or transactions. It should not \r\n"
-				+ "be used for any commercial or monetary purposes. The creator of this project shall not be held responsible for any misuse or misinterpretation of the code,\r\n"
-				+ "and users are solely responsible for their actions while interacting with this software. By using this ATM console project, you acknowledge that it is\r\n"
-				+ "a simulated environment and not a real banking system. Any resemblance to actual ATM machines or banking interfaces is purely coincidental. Please use\r\n"
-				+ "this project responsibly and ethically, and refrain from attempting to use it for any unauthorized or unlawful activities. The creator disclaims any \r\n"
-				+ "liability for any damages or consequences arising from the use or misuse of this software.\r\n"
-				+ "*********************************************************************************************************************************************************\r\n"
+				+ "+-------------------------------------------------------------------------------------------------------------------------------------------------------+\n"
+				+ "|                                                                    DISCLAIMER                                                                         |\n"
+				+ "+-------------------------------------------------------------------------------------------------------------------------------------------------------+\n"
+				+ "|This ATM console project is created for personal learning and development purposes only. It is not intended to represent or emulate the                |\n"
+				+ "|functioning of any actual ATM machines or banking systems. The functionalities and features implemented in this project are purely for educational     |\n"
+				+ "|experimentation and exploration of programming concepts. This project does not involve any real banking operations or transactions. It should not      |\n"
+				+ "|be used for any commercial or monetary purposes. The creator of this project shall not be held responsible for any misuse or misinterpretation of      |\n"
+				+ "|the code,and users are solely responsible for their actions while interacting with this software. By using this ATM console project, you acknowledge   |\n"
+				+ "|that it is a simulated environment and not a real banking system. Any resemblance to actual ATM machines or banking interfaces is purely coincidental. |\n"
+				+ "|Please use this project responsibly and ethically, and refrain from attempting to use it for any unauthorized or unlawful activities. The creator      |\n"
+				+ "|disclaims any liability for any damages or consequences arising from the use or misuse of this software.                                               |\n"
+				+ "+-------------------------------------------------------------------------------------------------------------------------------------------------------+\n"
 				+ "\n"
 				+ "Please input (y) if you agree and (n) if you disagree: \n>> ");
 		
@@ -43,7 +39,6 @@ public class DisclaimerDisplay implements ConsoleDisplays{
 				break;
 			case 'n':
 				System.out.println("\nExiting application...");
-				//disclaimerLoop = false;
 				return;
 			default:
 				retry++;

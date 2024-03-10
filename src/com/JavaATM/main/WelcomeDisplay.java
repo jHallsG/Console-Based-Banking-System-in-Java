@@ -1,34 +1,29 @@
 package com.JavaATM.main;
 
 import java.util.InputMismatchException;
-import java.util.Scanner;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class WelcomeDisplay implements ConsoleDisplays{
+public class WelcomeDisplay extends ParentClass{
 	
-	private Scanner scan = new Scanner(System.in);
-	
-	@Autowired
-	private LoginDisplay loginDisplay;
-	@Autowired
-	private RegisterDisplay registerDisplay;
-	@Autowired
-	private ManageDisplay manageDisplay;
+	public WelcomeDisplay(ManageDisplay manageDisplay, LoginDisplay loginDisplay, RegisterDisplay registerDisplay) {
+		super(manageDisplay, loginDisplay, registerDisplay);
+	}
 
 	public void show() {
 		boolean landingPageLoop = true;
 		int retry = 0;
-		int loginCredsRetry = 0;
 		
-		System.out.print("\n\nWelcome to XYZ Banking.\r\n"
-				+ "What do you want to do today?\n"
-				+ "1.		Login\n"
-				+ "2. 		Register\n"
-				+ "3. 		Exit\n"
-				+ ">> \r");
+		System.out.print(""
+				+ "+---------------------------------+\n"
+				+ "| Welcome to XYZ Banking.         |\n"
+				+ "| What do you want to do today?   |\n"
+				+ "+----+----------------------------+\n"
+				+ "| 1  |           Login            |\n"
+				+ "| 2  |           Register         |\n"
+				+ "| 3  |           Exit             |\n"
+				+ "+----+----------------------------+\n"
+				+ "\n>> ");
 		
 		while (landingPageLoop) {
 			try {
@@ -46,7 +41,7 @@ public class WelcomeDisplay implements ConsoleDisplays{
 					break;
 				case '3':
 					System.out.println("\nExiting application...");
-					System.exit(0);
+					return;
 				default:
 					retry++;
 					if (retry == 3) {

@@ -6,16 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserDisplay implements ConsoleDisplays{
+public class UserDisplay extends ParentClass{
+	
+	public UserDisplay(ManageDisplay manageDisplay, EditDisplay editDisplay) {
+		super(manageDisplay, editDisplay);
+	}
 
-	private Scanner scan = new Scanner(System.in);
-	
-	@Autowired
-	private EditDisplay editDisplay;
-	@Autowired
-	private ManageDisplay manageDisplay;
-	
-	
 	@Override
 	public void show() {
 		boolean userPageLoop = true;

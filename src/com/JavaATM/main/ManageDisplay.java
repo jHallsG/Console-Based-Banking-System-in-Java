@@ -9,7 +9,6 @@ public class ManageDisplay {
 	
 	private Stack<ConsoleDisplays> displayStack = new Stack<ConsoleDisplays>();
 	
-	
 	public void pushDisplay(ConsoleDisplays displays) {
 		displayStack.push(displays);
 		displays.show();
