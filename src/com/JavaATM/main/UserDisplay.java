@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserDisplay extends ParentClass{
 	
-	public UserDisplay(ManageDisplay manageDisplay, EditDisplay editDisplay) {
-		super(manageDisplay, editDisplay);
+	public UserDisplay(ManageDisplay manageDisplay, EditDisplay editDisplay, BalanceDisplay balanceDisplay, DepositDisplay depositDisplay) {
+		super(manageDisplay, editDisplay,balanceDisplay, depositDisplay);
 	}
 
 	@Override
@@ -18,13 +18,17 @@ public class UserDisplay extends ParentClass{
 		int retry = 0;
 		int userRetry = 0;
 		
-		System.out.print("Hello @USER, what would you like to do today? \n"
-				+ "1.	Edit User Details\n"
-				+ "2.	Check Balance\n"
-				+ "3. 	Deposit\n"
-				+ "4.	Money Transfer\n"
-				+ "5.	View Transactions"
-				+ "6.	Logout\n"
+		System.out.print(""
+				+ "+-----------------------------------------------+\n"
+				+ "| Hello @USER, what would you like to do today? |\n"
+				+ "+-----------------------------------------------+\n"
+				+ "|  1  |   Edit User Details                     |\n"
+				+ "|  2  |   Check Balance                         |\n"
+				+ "|  3  |   Deposit                               |\n"
+				+ "|  4  |   Money Transfer                        |\n"
+				+ "|  5  |   View Transactions                     |\n"
+				+ "|  6  |   Logout                                |\n"
+				+ "+-----------------------------------------------+\n"
 				+ ">> ");
 		
 		while(userPageLoop) {
@@ -36,10 +40,16 @@ public class UserDisplay extends ParentClass{
 				userPageLoop = false;
 				break;
 			case '2':
-				System.out.println("Your balance is: ");
+				new ClearConsoleScreen();
+				manageDisplay.pushDisplay(balanceDisplay);
+				manageDisplay.popDisplay();
+				userPageLoop = false;
 				break;
 			case '3':
-				System.out.println("Deposit deposit");
+				new ClearConsoleScreen();
+				manageDisplay.pushDisplay(depositDisplay);
+				manageDisplay.popDisplay();
+				userPageLoop = false;
 				break;
 			case '4':
 				System.out.println("Enter recipient number");

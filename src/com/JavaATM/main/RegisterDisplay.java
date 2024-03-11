@@ -11,8 +11,7 @@ import org.springframework.stereotype.Component;
 public class RegisterDisplay implements ConsoleDisplays{
 	
 	private Scanner scan = new Scanner(System.in);
-	private static final String emailPattern = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" +
-	        "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+	private static final String emailPattern = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 	private static final Pattern pattern = Pattern.compile(emailPattern);
 	
 	@Autowired

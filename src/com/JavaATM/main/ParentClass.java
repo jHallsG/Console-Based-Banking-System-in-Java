@@ -18,6 +18,9 @@ public abstract class ParentClass implements ConsoleDisplays{
 	protected UserDisplay userDisplay;
 	protected ViewTransactionsDisplay viewTransactionsDisplay;
 	protected WelcomeDisplay welcomeDisplay;
+	protected BalanceDisplay balanceDisplay;
+	
+	public ParentClass() {};
 	
 	@Autowired
 	public ParentClass(ManageDisplay manageDisplay, LoginDisplay loginDisplay, RegisterDisplay registerDisplay) {
@@ -38,10 +41,23 @@ public abstract class ParentClass implements ConsoleDisplays{
 		this.welcomeDisplay = welcomeDisplay;
 	}
 	
-	@Autowired
-	public ParentClass(ManageDisplay manageDisplay, EditDisplay editDisplay) {
+//	@Autowired
+//	public ParentClass(ManageDisplay manageDisplay, EditDisplay editDisplay) {
+//		this.manageDisplay = manageDisplay;
+//		this.editDisplay = editDisplay;
+//	}
+//	
+//	@Autowired
+//	public ParentClass(ManageDisplay manageDisplay, BalanceDisplay balanceDisplay) {
+//		this.manageDisplay = manageDisplay;
+//		this.balanceDisplay = balanceDisplay;
+//	}
+
+	public ParentClass(ManageDisplay manageDisplay, EditDisplay editDisplay, BalanceDisplay balanceDisplay, DepositDisplay depositDisplay) {
 		this.manageDisplay = manageDisplay;
+		this.balanceDisplay = balanceDisplay;
 		this.editDisplay = editDisplay;
+		this.depositDisplay = depositDisplay;
 	}
 
 	@Override
