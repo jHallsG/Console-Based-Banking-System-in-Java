@@ -3,6 +3,8 @@ package com.JavaATM.main;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import com.JavaATM.displays.DisclaimerDisplay;
+
 public class Main {
 
 	public static void main(String[] args) {

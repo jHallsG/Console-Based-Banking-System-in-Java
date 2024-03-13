@@ -1,4 +1,4 @@
-package com.JavaATM.main;
+package com.JavaATM.displays;
 
 public class MoneyTransferDisplay implements ConsoleDisplays{
 

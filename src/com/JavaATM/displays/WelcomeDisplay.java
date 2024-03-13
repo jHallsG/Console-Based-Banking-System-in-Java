@@ -1,7 +1,10 @@
-package com.JavaATM.main;
+package com.JavaATM.displays;
 
 import java.util.InputMismatchException;
 import org.springframework.stereotype.Component;
+
+import com.JavaATM.main.ClearConsoleScreen;
+import com.JavaATM.main.ParentClass;
 
 @Component
 public class WelcomeDisplay extends ParentClass{

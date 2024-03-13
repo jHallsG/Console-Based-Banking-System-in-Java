@@ -4,6 +4,20 @@ import java.util.Scanner;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.JavaATM.displays.BalanceDisplay;
+import com.JavaATM.displays.ChangePasswordDisplay;
+import com.JavaATM.displays.ConsoleDisplays;
+import com.JavaATM.displays.DepositDisplay;
+import com.JavaATM.displays.DisclaimerDisplay;
+import com.JavaATM.displays.EditDisplay;
+import com.JavaATM.displays.LoginDisplay;
+import com.JavaATM.displays.ManageDisplay;
+import com.JavaATM.displays.MoneyTransferDisplay;
+import com.JavaATM.displays.RegisterDisplay;
+import com.JavaATM.displays.UserDisplay;
+import com.JavaATM.displays.ViewTransactionsDisplay;
+import com.JavaATM.displays.WelcomeDisplay;
+
 public abstract class ParentClass implements ConsoleDisplays{
 	
 	protected Scanner scan = new Scanner(System.in);
@@ -40,18 +54,6 @@ public abstract class ParentClass implements ConsoleDisplays{
 		this.manageDisplay = manageDisplay;
 		this.welcomeDisplay = welcomeDisplay;
 	}
-	
-//	@Autowired
-//	public ParentClass(ManageDisplay manageDisplay, EditDisplay editDisplay) {
-//		this.manageDisplay = manageDisplay;
-//		this.editDisplay = editDisplay;
-//	}
-//	
-//	@Autowired
-//	public ParentClass(ManageDisplay manageDisplay, BalanceDisplay balanceDisplay) {
-//		this.manageDisplay = manageDisplay;
-//		this.balanceDisplay = balanceDisplay;
-//	}
 
 	public ParentClass(ManageDisplay manageDisplay, EditDisplay editDisplay, BalanceDisplay balanceDisplay, DepositDisplay depositDisplay) {
 		this.manageDisplay = manageDisplay;

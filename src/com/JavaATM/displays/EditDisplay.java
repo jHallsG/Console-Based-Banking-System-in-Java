@@ -1,9 +1,11 @@
-package com.JavaATM.main;
+package com.JavaATM.displays;
 
 import java.util.Scanner;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.JavaATM.main.ClearConsoleScreen;
 @Component
 public class EditDisplay implements ConsoleDisplays{
 	

@@ -1,9 +1,14 @@
-package com.JavaATM.main;
+package com.JavaATM.displays;
 
 import org.springframework.stereotype.Component;
 
+import com.JavaATM.main.ClearConsoleScreen;
+import com.JavaATM.main.ParentClass;
+
 @Component
 public class DepositDisplay extends ParentClass{
+	
+	private int depositAmt;
 
 	@Override
 	public void show() {
@@ -18,27 +23,16 @@ public class DepositDisplay extends ParentClass{
 				+ "Please enter deposit amount: \n"
 				+ ">> ");
 		
-		int deposit = scan.nextInt();
+		depositAmt = scan.nextInt();
 		
+		processDeposit();
 		pause();
-		updatedDeposit();
-		pause();
+		
 	}
 	
 	public void processDeposit() {
-		
-	}
-	
-	public void updatedDeposit() {
-		int accountNum = 123456789;
-		int balance = 123456;
-		System.out.print(""
-				+ "+--------------------------------------------+\n"
-				+ "|				Deposit						|\n"
-				+ "+--------------------------------------------+\n");
-		System.out.printf("| Account Number: 	%s			|\n",accountNum);
-		System.out.printf("| Current Balance:	PHP%s 				|\n",balance);
-		System.out.print("+--------------------------------------------+\n");
+		// process deposit//
+		System.out.printf("\nYou have successfully deposited %s into your account",depositAmt);
 	}
 	
 	public void pause() {
