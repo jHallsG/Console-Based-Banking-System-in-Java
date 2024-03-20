@@ -12,5 +12,9 @@
 	<classpathentry kind="lib" path="C:/Users/janha/OneDrive/Desktop/SpringFramework5.3.32/spring-core-5.3.9.jar"/>
 	<classpathentry kind="lib" path="C:/Users/janha/OneDrive/Desktop/SpringFramework5.3.32/spring-expression-5.3.9.jar"/>
 	<classpathentry kind="lib" path="C:/Users/janha/OneDrive/Desktop/SpringFramework5.3.32/spring-jcl-5.3.9.jar"/>
+	<classpathentry kind="lib" path="C:/Users/janha/OneDrive/Desktop/SpringFramework5.3.32/javax.annotation-api-1.3.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/janha/OneDrive/Desktop/SpringFramework5.3.32/mysql-connector-java-8.0.28.jar"/>
+	<classpathentry kind="lib" path="C:/Users/janha/OneDrive/Desktop/SpringFramework5.3.32/spring-jdbc-5.3.9.jar" sourcepath="C:/Users/janha/Downloads/spring-jdbc-5.3.9-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/janha/OneDrive/Desktop/SpringFramework5.3.32/spring-tx-5.3.9.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

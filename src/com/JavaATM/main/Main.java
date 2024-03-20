@@ -1,26 +1,30 @@
 package com.JavaATM.main;
 
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.JavaATM.displays.DisclaimerDisplay;
 
 public class Main {
 
 	public static void main(String[] args) {
-		ApplicationContext context = new AnnotationConfigApplicationContext(DisclaimerDisplay.class);
+		ApplicationContext context = new ClassPathXmlApplicationContext("Bean.xml");
 		DisclaimerDisplay disclaimer = context.getBean("disclaimerDisplay",DisclaimerDisplay.class);
-//		EditDisplay disclaimer = context.getBean("editDisplay",EditDisplay.class);
 		
 		disclaimer.show();
+
 		
+//		JDBCImplementation implem = context.getBean("jdbcImpl",JDBCImplementation.class);
+//		System.out.println(implem.emailCheck("username@test.com"));
+//		
 //		// Get all bean names
-//        String[] beanNames = context.getBeanDefinitionNames();
+//        String[] beanNames = jdbcConn.getBeanDefinitionNames();
 //
 //        // Print all bean names
 //        for (String beanName : beanNames) {
 //            System.out.println(beanName);
 //        }
-		((AnnotationConfigApplicationContext) context).close();
+
+		((ClassPathXmlApplicationContext) context).close();
 	}
 }

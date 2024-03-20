@@ -26,7 +26,7 @@ public class WelcomeDisplay extends ParentClass{
 				+ "| What do you want to do today?   |\n"
 				+ "+----+----------------------------+\n"
 				+ "| 1  |           Login            |\n"
-				+ "| 2  |           Register         |\n"
+				+ "| 2  |           Enroll Account   |\n"
 				+ "| 3  |           Exit             |\n"
 				+ "+----+----------------------------+\n"
 				+ "\n>> ");
