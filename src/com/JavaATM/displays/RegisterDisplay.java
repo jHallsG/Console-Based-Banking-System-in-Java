@@ -9,23 +9,20 @@ import org.springframework.stereotype.Component;
 
 import com.JavaATM.api.JDBCImplementation;
 import com.JavaATM.main.ClearConsoleScreen;
+import com.JavaATM.main.ParentClass;
 
 @Component
-public class RegisterDisplay implements ConsoleDisplays{
+public class RegisterDisplay extends ParentClass{
+	
+	public RegisterDisplay(ManageDisplay manageDisplay, JDBCImplementation jdbcImpl) {
+		super(manageDisplay,jdbcImpl);
+	}
 	
 	private Scanner scan = new Scanner(System.in);
 	private String account, pass, confirmPass, email;
 	private static final String emailPattern = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 	private static final Pattern pattern = Pattern.compile(emailPattern);
-	
-	
-	@Autowired
-	private ManageDisplay manageDisplay;
-	@Autowired
-	private JDBCImplementation jdbcImpl;
-	
-	
-	
+
 	@Override
 	public void show() {
 		while(true) {

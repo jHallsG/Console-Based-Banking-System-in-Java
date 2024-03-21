@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.JavaATM.api.JDBCImplementation;
 import com.JavaATM.displays.BalanceDisplay;
 import com.JavaATM.displays.ChangePasswordDisplay;
 import com.JavaATM.displays.ConsoleDisplays;
@@ -33,8 +34,24 @@ public abstract class ParentClass implements ConsoleDisplays{
 	protected ViewTransactionsDisplay viewTransactionsDisplay;
 	protected WelcomeDisplay welcomeDisplay;
 	protected BalanceDisplay balanceDisplay;
+	protected JDBCImplementation jdbcImpl;
 	
 	public ParentClass() {};
+	
+	// Constructor for Register Page
+	@Autowired
+	public ParentClass(ManageDisplay manageDisplay, JDBCImplementation jdbcImpl) {
+		this.manageDisplay = manageDisplay;
+		this.jdbcImpl = jdbcImpl;
+	}
+	
+	// Constructor for Login Page
+	@Autowired
+	public ParentClass(ManageDisplay manageDisplay, UserDisplay userDisplay, JDBCImplementation jdbcImpl) {
+		this.manageDisplay = manageDisplay;
+		this.userDisplay = userDisplay;
+		this.jdbcImpl = jdbcImpl;
+	}
 	
 	@Autowired
 	public ParentClass(ManageDisplay manageDisplay, LoginDisplay loginDisplay, RegisterDisplay registerDisplay) {
@@ -43,11 +60,7 @@ public abstract class ParentClass implements ConsoleDisplays{
 		this.registerDisplay = registerDisplay;
 	}
 	
-	@Autowired
-	public ParentClass(ManageDisplay manageDisplay, UserDisplay userDisplay) {
-		this.manageDisplay = manageDisplay;
-		this.userDisplay = userDisplay;
-	}
+	
 	
 	@Autowired
 	public ParentClass(ManageDisplay manageDisplay, WelcomeDisplay welcomeDisplay) {

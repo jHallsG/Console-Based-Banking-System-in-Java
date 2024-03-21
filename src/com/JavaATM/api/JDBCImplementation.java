@@ -44,7 +44,8 @@ public class JDBCImplementation {
 		return (jdbcTemplate.queryForObject("SELECT account_id FROM account WHERE account_number = ?", Integer.class, arg));
 	}
 	
-	public void transactionalTest() {
-		
+	public int authenticatePassword(String username, String password) {
+		int authPassword = jdbcTemplate.queryForObject("Select count(*) from credentials where username = ? and password = ?", Integer.class, username, password);
+		return authPassword;
 	}
 }
