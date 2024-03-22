@@ -1,18 +1,22 @@
 package com.JavaATM.displays;
 
+import java.util.List;
 import java.util.Scanner;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import com.JavaATM.api.JDBCImplementation;
+import com.JavaATM.dao.JavaATMDAO;
 import com.JavaATM.main.ClearConsoleScreen;
 import com.JavaATM.main.ParentClass;
 
 @Component
 public class LoginDisplay extends ParentClass{
 	
-	public LoginDisplay(ManageDisplay manageDisplay, UserDisplay userDisplay, JDBCImplementation jdbcImpl) {
+	public LoginDisplay(ManageDisplay manageDisplay, MainDisplay userDisplay, JDBCImplementation jdbcImpl) {
 		super(manageDisplay, userDisplay, jdbcImpl);
 	}
 	
@@ -26,33 +30,37 @@ public class LoginDisplay extends ParentClass{
 					+ "+----------------------------------+\n"
 					+ "| Please enter your email address: |\n"
 					+ "+----------------------------------+\n"
-					+ "\n>> ");
+					+ ">> ");
 			username = scan.nextLine();
 			
-			if (jdbcImpl.emailCheck(username) > 0) break;
+			if (jdbcImpl.emailCheck(username) > 0) break; 
 			else {
-				System.out.println("\nEmail is not yet enrolled. Please enroll your account and try again.\n");
+				System.out.println("\nEmail \"" + username + "\" is not yet enrolled. Please enroll your account and try again.\n");
 			}
 			
 			manageDisplay.popDisplay();
 		}
 		
 		while (true) {
-			System.out.print(""
+			System.out.print("\n"
 					+ "+----------------------------------+\n"
 					+ "| Please enter your password:      |\n"
 					+ "+----------------------------------+\n"
-					+ "\n>> ");
+					+ ">> ");
 			pass = scan.nextLine();
 			
-			if (jdbcImpl.authenticatePassword(username, pass) > 0) break;
+			if (BCrypt.checkpw(pass, jdbcImpl.getHashedPassword(username))) break;
 			else {
-				System.out.println("\nEmail and password does not match. Please try again.\n");
+				System.out.println("\nEmail and password does not match. Please try again.");
 				continue;
 			}
 		}
-		
+
 		new ClearConsoleScreen();
 		manageDisplay.pushDisplay(userDisplay);
+	}
+	
+	public int getAcctId() {
+		return jdbcImpl.getAcctId(username);
 	}
 }

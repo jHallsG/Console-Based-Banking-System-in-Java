@@ -16,5 +16,6 @@
 	<classpathentry kind="lib" path="C:/Users/janha/OneDrive/Desktop/SpringFramework5.3.32/mysql-connector-java-8.0.28.jar"/>
 	<classpathentry kind="lib" path="C:/Users/janha/OneDrive/Desktop/SpringFramework5.3.32/spring-jdbc-5.3.9.jar" sourcepath="C:/Users/janha/Downloads/spring-jdbc-5.3.9-sources.jar"/>
 	<classpathentry kind="lib" path="C:/Users/janha/OneDrive/Desktop/SpringFramework5.3.32/spring-tx-5.3.9.jar"/>
+	<classpathentry kind="lib" path="C:/Users/janha/OneDrive/Desktop/SpringFramework5.3.32/jbcrypt-0.4.jar" sourcepath="C:/Users/janha/OneDrive/Desktop/SpringFramework5.3.32/jbcrypt-0.4-sources.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -6,38 +6,39 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.JavaATM.main.ClearConsoleScreen;
+import com.JavaATM.main.ParentClass;
 @Component
-public class EditDisplay implements ConsoleDisplays{
+public class EditDisplay extends  ParentClass{
 	
-	private Scanner scan = new Scanner(System.in);
 	@Autowired
 	ChangePasswordDisplay changePasswordDisplay;
 	@Autowired
-	ChangeUsernameDisplay changeUsernameDisplay;
+	EditUserDetailsDisplay editUserDetailsDisplay;
 	@Autowired
 	private ManageDisplay manageDisplay;
 	
 	@Override
 	public void show() {
-		boolean innerLoop = true;
-		boolean editLoop = true;
 		int retry = 0;
 		
-		System.out.print("What would you like to do?\n\n"
-				+ ""
-				+ "1.	Change username.\n"
-				+ "2. 	Change password.\n"
-				+ "3.	Back/Cancel\n"
+		System.out.print(""
+				+ "+-----------------------------------------+\n"
+				+ "|  What would you like to do?             |\n"
+				+ "+-----+-----------------------------------+\n"
+				+ "|  1  |  Edit details                     |\n"
+				+ "|  2  |  Change password                  |\n"
+				+ "|  3  |  Back/Cancel                      |\n"
+				+ "+-----+-----------------------------------+\n"
 				+ ">> ");
 
-		while(editLoop) {
+		while(true) {
 			char userChoice = scan.next().charAt(0);
 			scan.nextLine();
 			
 			switch (userChoice) {
 			case '1':
 				new ClearConsoleScreen();
-				manageDisplay.pushDisplay(changeUsernameDisplay);
+				manageDisplay.pushDisplay(editUserDetailsDisplay);
 				break;
 				
 			case '2':

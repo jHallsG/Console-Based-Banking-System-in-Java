@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class JavaATMDAO {
 
-	private int id;
+	private int account_id;
 	private int account_number;
 	private int balance;
 	private String name;
@@ -17,8 +17,19 @@ public class JavaATMDAO {
 	private int amount;
 	private LocalDate transaction_date;
 
-	public int getId() {
-		return id;
+	@Override
+	public String toString() {
+		String display =  ""
+				+ "Account ID: " + account_id +"\n"
+				+ "Name: " + name + "\n"
+				+ "Address: " + address + "\n"
+				+ "Contact Number: " + contact_number;
+		return display;
+	}
+	
+	
+	public int getAccount_id() {
+		return account_id;
 	}
 
 	public int getAccount_number() {
@@ -65,8 +76,8 @@ public class JavaATMDAO {
 		return transaction_date;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setAccount_id(int account_id) {
+		this.account_id = account_id;
 	}
 
 	public void setAccount_number(int account_number) {

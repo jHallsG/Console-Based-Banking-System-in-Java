@@ -4,7 +4,6 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.JavaATM.api.JDBCImplementation;
@@ -49,7 +48,7 @@ public class RegisterDisplay extends ParentClass{
 		}
 		
 		while(true) {
-			System.out.print(""
+			System.out.print("\n"
 					+ "+-----------------------------------+\n"
 					+ "| Please enter your email.          |\n"
 					+ "| This will serve as your username. |\n"
@@ -59,50 +58,28 @@ public class RegisterDisplay extends ParentClass{
 			
 			// CHECK IF VALID EMAIL PATTERN
 			if(!emailPatternValidation(email)) {
-				System.out.println("\n\"" + email + "\"" + " is not an email address. Please try again.\n");
+				System.out.println("\n\"" + email + "\"" + " is not an email address. Please try again.");
 				continue;
 			}
 			
 			//CHECK IF EMAIL ALREADY EXISTS
 			if(jdbcImpl.emailCheck(email) > 0) {
-				System.out.println("\n\"" + email + "\"" + " is already used. Please try again.\n");
+				System.out.println("\n\"" + email + "\"" + " is already used. Please try again.");
 				continue;
 			}
 			
 			break;
 		}
 		
-		System.out.print(""
-				+ "+------------------------------+\n"
-				+ "| Please enter your name:      |\n"
-				+ "+------------------------------|\n"
-				+ ">> ");
-		String name = scan.nextLine();
-
-		System.out.print(""
-				+ "+------------------------------+\n"
-				+ "| Please enter your address:   |\n"
-				+ "+------------------------------|\n"
-				+ ">> ");
-		String address = scan.nextLine();
-		
-		System.out.print(""
-				+ "+--------------------------------------+\n"
-				+ "| Please enter your contact number:    |\n"
-				+ "+--------------------------------------+\n"
-				+ ">> ");
-			
-		String contactNum = scan.nextLine();
-		
 		while(true) {
-			System.out.print(""
+			System.out.print("\n"
 					+ "+--------------------------------------+\n"
 					+ "| Please enter your password:          |\n"
 					+ "+--------------------------------------+\n"
 					+ ">> ");
 			pass = scan.nextLine();
 			
-			System.out.print(""
+			System.out.print("\n"
 					+ "+--------------------------------------+\n"
 					+ "| Please confirm your password:        |\n"
 					+ "+--------------------------------------+\n"
@@ -118,11 +95,11 @@ public class RegisterDisplay extends ParentClass{
 					}
 				
 				// Register if account id is generated
-				jdbcImpl.registration(accountId, email, confirmPass, name, address, contactNum);
+				jdbcImpl.registration(accountId, email, confirmPass);
 				System.out.println("\nCongratulations! You are now successfully registered. Please relogin to activate your credentials.");
 				break;
 			} else {
-				System.out.println("\nPassword does not match. Please try again.\n");
+				System.out.println("\nPassword does not match. Please try again.");
 			}
 		}
 		
