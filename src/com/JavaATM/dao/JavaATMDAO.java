@@ -3,6 +3,17 @@ package com.JavaATM.dao;
 import java.time.LocalDate;
 
 public class JavaATMDAO {
+	
+	private static JavaATMDAO instance = null;
+	
+	private JavaATMDAO() {
+		// private to prevent instantiation of this class
+	}
+	
+	public static JavaATMDAO getInstance() {
+		if (instance == null) instance = new JavaATMDAO();
+		return instance;
+	}
 
 	private int account_id;
 	private int account_number;

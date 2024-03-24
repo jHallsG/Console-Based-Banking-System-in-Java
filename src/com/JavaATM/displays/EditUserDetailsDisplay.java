@@ -31,14 +31,14 @@ public class EditUserDetailsDisplay extends ParentClass{
 			+ ">> ");
 		String name = scan.nextLine();
 	
-		System.out.print(""
+		System.out.print("\n"
 			+ "+------------------------------+\n"
 			+ "| Please enter your address:   |\n"
 			+ "+------------------------------|\n"
 			+ ">> ");
 		String address = scan.nextLine();
 	
-		System.out.print(""
+		System.out.print("\n"
 			+ "+--------------------------------------+\n"
 			+ "| Please enter your contact number:    |\n"
 			+ "+--------------------------------------+\n"

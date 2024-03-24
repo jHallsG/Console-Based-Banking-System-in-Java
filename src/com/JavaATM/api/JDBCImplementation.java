@@ -75,7 +75,7 @@ public class JDBCImplementation {
 		return jdbcTemplate.update("UPDATE credentials SET password = ? WHERE account_id = ?",passwordHash(password),acct);
 	}
 	
-//	public String getName(int acct) {
-//		return jdbcTemplate.queryForObject("SELECT name FROM customer WHERE account_id = ?", String.class, acct);
-//	}
+	public int getBalance(int acct) {
+		return jdbcTemplate.queryForObject("SELECT balance FROM account WHERE account_id = ?", Integer.class, acct);
+	}
 }

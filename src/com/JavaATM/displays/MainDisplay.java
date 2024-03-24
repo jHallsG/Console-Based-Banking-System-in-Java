@@ -26,9 +26,12 @@ public class MainDisplay extends ParentClass{
 
 	@Override
 	public void show() {
-//		int acct = loginDisplay.getAcctId();
-//		String name = jdbcImpl.getName(1);
-		String name = "bruhaha";
+		JavaATMDAO dao = JavaATMDAO.getInstance();
+		
+		System.out.println(dao.getName());
+		
+		int acct = loginDisplay.getAcctId();
+		String name = jdbcImpl.getName(acct);
 		String embolden = "\033[1m" + name + "\033[0m";
 		String padding = " ".repeat((10 - name.length())/2);
 		int retry = 0;
@@ -46,42 +49,42 @@ public class MainDisplay extends ParentClass{
 				+ "+---------+------------------------------------------------------+\n"
 				+ ">> ",padding,embolden,padding);
 		
-//		while(true) {
-//			char options = scan.next().charAt(0);
-//			switch (options) {
-//			case '1':
-//				new ClearConsoleScreen();
-//				manageDisplay.pushDisplay(editDisplay);
-//				break;
-//			case '2':
-//				new ClearConsoleScreen();
-//				manageDisplay.pushDisplay(balanceDisplay);
-//				manageDisplay.popDisplay();
-//				break;
-//			case '3':
-//				new ClearConsoleScreen();
-//				manageDisplay.pushDisplay(depositDisplay);
-//				manageDisplay.popDisplay();
-//				break;
-//			case '4':
-//				System.out.println("Enter recipient number");
-//				break;
-//			case '5':
-//				System.out.println("\nExiting application... ");
-//				return;
-//			case '6':
-//				manageDisplay.popDisplay();
-//				break;
-//			default:
-//				retry++;
-//				if (retry == 3) {
-//					System.out.println("\nMultiple invalid inputs detected. Exiting application...");
-//					return;
-//				} else {
-//					System.out.println("\nInvalid input. Please try again: \n");
-//				}
-//			}
-//		}
+		while(true) {
+			char options = scan.next().charAt(0);
+			switch (options) {
+			case '1':
+				new ClearConsoleScreen();
+				manageDisplay.pushDisplay(editDisplay);
+				break;
+			case '2':
+				new ClearConsoleScreen();
+				manageDisplay.pushDisplay(balanceDisplay);
+				manageDisplay.popDisplay();
+				break;
+			case '3':
+				new ClearConsoleScreen();
+				manageDisplay.pushDisplay(depositDisplay);
+				manageDisplay.popDisplay();
+				break;
+			case '4':
+				System.out.println("Enter recipient number");
+				break;
+			case '5':
+				System.out.println("\nExiting application... ");
+				return;
+			case '6':
+				manageDisplay.popDisplay();
+				break;
+			default:
+				retry++;
+				if (retry == 3) {
+					System.out.println("\nMultiple invalid inputs detected. Exiting application...");
+					return;
+				} else {
+					System.out.println("\nInvalid input. Please try again: \n");
+				}
+			}
+		}
 	}
 	
 }

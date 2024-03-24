@@ -6,6 +6,7 @@ import java.util.Scanner;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import com.JavaATM.api.JDBCImplementation;
@@ -55,7 +56,7 @@ public class LoginDisplay extends ParentClass{
 				continue;
 			}
 		}
-
+		
 		new ClearConsoleScreen();
 		manageDisplay.pushDisplay(userDisplay);
 	}
