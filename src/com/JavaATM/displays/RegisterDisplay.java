@@ -42,9 +42,9 @@ public class RegisterDisplay extends ParentClass{
 			if(jdbcImpl.accountCheck(account) > 0) {
 				System.out.println("\n\"" + account + "\"" + " is already enrolled. Please try again.\n");
 				continue;
+			} else {
+				break;
 			}
-			
-			break;
 		}
 		
 		while(true) {
@@ -66,9 +66,9 @@ public class RegisterDisplay extends ParentClass{
 			if(jdbcImpl.emailCheck(email) > 0) {
 				System.out.println("\n\"" + email + "\"" + " is already used. Please try again.");
 				continue;
+			} else {
+				break;
 			}
-			
-			break;
 		}
 		
 		while(true) {
@@ -103,23 +103,12 @@ public class RegisterDisplay extends ParentClass{
 			}
 		}
 		
-		pause();
+		ClearConsoleScreen.pauseThenClearScreen();
 		manageDisplay.popDisplay();
 	}
 	
 	public static boolean emailPatternValidation(String emailInput) {
 		Matcher matcher = pattern.matcher(emailInput);
 		return matcher.matches();
-	}
-		
-		
-	public void pause() {
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		new ClearConsoleScreen();
 	}
 }

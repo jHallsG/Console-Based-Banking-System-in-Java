@@ -1,9 +1,5 @@
 package com.JavaATM.displays;
 
-import java.util.InputMismatchException;
-
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 import com.JavaATM.main.ClearConsoleScreen;
@@ -17,7 +13,6 @@ public class WelcomeDisplay extends ParentClass{
 	}
 
 	public void show() {
-		boolean landingPageLoop = true;
 		int retry = 0;
 		
 		System.out.print(""
@@ -31,39 +26,27 @@ public class WelcomeDisplay extends ParentClass{
 				+ "+----+----------------------------+\n"
 				+ "\n>> ");
 		
-		while (landingPageLoop) {
-			try {
-				char options = scan.next().charAt(0);
-				switch (options) {
+		while (true) {
+			char options = scan.next().charAt(0);
+			switch (options) {
 				case '1':
-					new ClearConsoleScreen();
+					ClearConsoleScreen.clearScreen();
 					manageDisplay.pushDisplay(loginDisplay);
-					landingPageLoop = false;
-					break;
+					return;
 				case '2':
-					new ClearConsoleScreen();
+					ClearConsoleScreen.clearScreen();
 					manageDisplay.pushDisplay(registerDisplay);
-					landingPageLoop = false;
-					break;
+					return;
 				case '3':
-					System.out.println("\nExiting application...");
+					System.out.println("\nExiting application...\n");
 					return;
 				default:
 					retry++;
 					if (retry == 3) {
 						System.out.println("\nMultiple invalid inputs detected. Exiting application...");
-		                System.exit(0);
+		                return;
 					}
 					System.out.print("\nInvalid input. Please try again: \n>> ");
-				}
-			} catch (InputMismatchException e) {
-				retry++;
-				if (retry == 3) {
-					System.out.println("\nMultiple invalid inputs detected. Exiting application...");
-	                System.exit(0);
-				}
-				System.out.print("\nInvalid input. Please try again. \n>> ");	
-				scan.next(); //need to clear the input or the program will run in an infinite loop.
 			}
 		}
 	}

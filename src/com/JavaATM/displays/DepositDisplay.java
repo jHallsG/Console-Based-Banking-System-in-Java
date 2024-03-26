@@ -12,12 +12,13 @@ public class DepositDisplay extends ParentClass{
 
 	@Override
 	public void show() {
+		
 		System.out.print(""
 				+ "+--------------------------------------------+\n"
 				+ "|				Deposit						|\n"
 				+ "+--------------------------------------------+\n"
-				+ "| Account Number: 	********1234			|\n"
-				+ "| Current Balance:	PHP1234.00 				|\n"
+				+ "| Account Number: 	%d			|\n"
+				+ "| Current Balance:	PHP%d 				|\n"
 				+ "+--------------------------------------------+\n"
 				+ "\n"
 				+ "Please enter deposit amount: \n"
@@ -25,24 +26,17 @@ public class DepositDisplay extends ParentClass{
 		
 		depositAmt = scan.nextInt();
 		
-		processDeposit();
-		pause();
+		processDeposit(depositAmt);
+		ClearConsoleScreen.pauseThenClearScreen();
+		manageDisplay.popDisplay();
 		
 	}
 	
-	public void processDeposit() {
-		// process deposit//
-		System.out.printf("\nYou have successfully deposited %s into your account",depositAmt);
-	}
-	
-	public void pause() {
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	public void processDeposit(int amount) {
+		if (jdbcImpl.updateBalance(loginDisplay.getAcctId(), amount) > 0) {
+			System.out.printf("\nYou have successfully deposited %s into your account",depositAmt);
+		} else {
+			System.out.println("\nDeposit failed. Please try again later.");
 		}
-		new ClearConsoleScreen();
 	}
-
 }

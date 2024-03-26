@@ -48,7 +48,7 @@ public class EditUserDetailsDisplay extends ParentClass{
 		if (jdbcImpl.updateUserDetails(name, address, contactNum, loginDisplay.getAcctId()) > 0) {
 			System.out.println("\nDetails successfully saved.");
 			ClearConsoleScreen.pause();
-			new ClearConsoleScreen();
+			ClearConsoleScreen.clearScreen();
 			manageDisplay.popDisplay();
 		} else {
 			System.out.println("\nOperation failed. Please try again.");

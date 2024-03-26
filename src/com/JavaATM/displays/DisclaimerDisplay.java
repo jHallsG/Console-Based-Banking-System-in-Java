@@ -17,7 +17,6 @@ public class DisclaimerDisplay extends ParentClass{
 	}
 
 	public void show() {
-		boolean disclaimerLoop = true;
 		int retry = 0;
 		System.out.print(""
 				+ "+-------------------------------------------------------------------------------------------------------------------------------------------------------+\n"
@@ -35,15 +34,13 @@ public class DisclaimerDisplay extends ParentClass{
 				+ "\n"
 				+ "Please input (y) if you agree and (n) if you disagree: \n>> ");
 		
-		while (disclaimerLoop) {
+		while (true) {
 			char choice = scan.next().charAt(0);
-			
 			switch (choice) {
 			case 'y':
-				new ClearConsoleScreen();
+				ClearConsoleScreen.clearScreen();
 				manageDisplay.pushDisplay(welcomeDisplay);
-				disclaimerLoop = false;
-				break;
+				return;
 			case 'n':
 				System.out.println("\nExiting application...");
 				return;

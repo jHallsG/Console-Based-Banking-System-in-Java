@@ -11,11 +11,13 @@ import com.JavaATM.main.ParentClass;
 public class EditDisplay extends  ParentClass{
 	
 	@Autowired
-	ChangePasswordDisplay changePasswordDisplay;
+	private ChangePasswordDisplay changePasswordDisplay;
 	@Autowired
-	EditUserDetailsDisplay editUserDetailsDisplay;
+	private EditUserDetailsDisplay editUserDetailsDisplay;
 	@Autowired
 	private ManageDisplay manageDisplay;
+	@Autowired
+	private ViewDetailsDisplay viewDetailsDisplay;
 	
 	@Override
 	public void show() {
@@ -25,9 +27,10 @@ public class EditDisplay extends  ParentClass{
 				+ "+-----------------------------------------+\n"
 				+ "|  What would you like to do?             |\n"
 				+ "+-----+-----------------------------------+\n"
-				+ "|  1  |  Edit details                     |\n"
-				+ "|  2  |  Change password                  |\n"
-				+ "|  3  |  Back/Cancel                      |\n"
+				+ "|  1  |  View details                     |\n" 
+				+ "|  2  |  Edit Details                     |\n"
+				+ "|  3  |  Change password                  |\n"
+				+ "|  4  |  Back/Cancel                      |\n"
 				+ "+-----+-----------------------------------+\n"
 				+ ">> ");
 
@@ -37,17 +40,22 @@ public class EditDisplay extends  ParentClass{
 			
 			switch (userChoice) {
 			case '1':
-				new ClearConsoleScreen();
-				manageDisplay.pushDisplay(editUserDetailsDisplay);
+				ClearConsoleScreen.clearScreen();
+				manageDisplay.pushDisplay(viewDetailsDisplay);
 				break;
 				
 			case '2':
-				new ClearConsoleScreen();
-				manageDisplay.pushDisplay(changePasswordDisplay);
+				ClearConsoleScreen.clearScreen();
+				manageDisplay.pushDisplay(editUserDetailsDisplay);
 				break;
 				
 			case '3':
-				new ClearConsoleScreen();
+				ClearConsoleScreen.clearScreen();
+				manageDisplay.pushDisplay(changePasswordDisplay);
+				break;
+				
+			case '4':
+				ClearConsoleScreen.clearScreen();
 				manageDisplay.popDisplay();
 				break;
 				

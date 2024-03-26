@@ -70,8 +70,7 @@ public class ChangePasswordDisplay extends ParentClass{
 			}
 		}
 		
-		ClearConsoleScreen.pause();
-		new ClearConsoleScreen();
+		ClearConsoleScreen.pauseThenClearScreen();
 		manageDisplay.popDisplay();
 	}
 	

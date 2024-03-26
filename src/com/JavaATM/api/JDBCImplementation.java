@@ -68,14 +68,21 @@ public class JDBCImplementation {
 	
 	public int updateUserDetails(String name, String address, String contact, int acct) {
 		Object[] args = {name,address,contact,acct};
+		jdbcTemplate.update("INSERT INTO transaction (account_id, transaction_type) VALUES (?,?)",acct,"edit_profile");
 		return jdbcTemplate.update("UPDATE customer SET name = ?, address = ?, contact_number = ? WHERE account_id = ?",args);
 	}
 	
 	public int updatePassword(String password, int acct) {
+		jdbcTemplate.update("INSERT INTO transaction (account_id, transaction_type) VALUES (?,?)",acct,"edit_profile");
 		return jdbcTemplate.update("UPDATE credentials SET password = ? WHERE account_id = ?",passwordHash(password),acct);
 	}
 	
 	public int getBalance(int acct) {
 		return jdbcTemplate.queryForObject("SELECT balance FROM account WHERE account_id = ?", Integer.class, acct);
+	}
+	
+	public int updateBalance(int acct, int deposit_amt) {
+		jdbcTemplate.update("INSERT INTO transaction (account_id, amount,transaction_type) VALUES (?,?)",acct,deposit_amt,"deposit");
+		return jdbcTemplate.update("UPDATE account SET balance = ? WHERE account_id = ?",deposit_amt,acct);
 	}
 }

@@ -1,16 +1,9 @@
 package com.JavaATM.displays;
 
-import java.util.List;
-import java.util.Scanner;
-
 import org.mindrot.jbcrypt.BCrypt;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import com.JavaATM.api.JDBCImplementation;
-import com.JavaATM.dao.JavaATMDAO;
 import com.JavaATM.main.ClearConsoleScreen;
 import com.JavaATM.main.ParentClass;
 
@@ -34,12 +27,12 @@ public class LoginDisplay extends ParentClass{
 					+ ">> ");
 			username = scan.nextLine();
 			
-			if (jdbcImpl.emailCheck(username) > 0) break; 
+			if (jdbcImpl.emailCheck(username) > 0) break;
 			else {
 				System.out.println("\nEmail \"" + username + "\" is not yet enrolled. Please enroll your account and try again.\n");
+				manageDisplay.popDisplay();
+				return;
 			}
-			
-			manageDisplay.popDisplay();
 		}
 		
 		while (true) {
@@ -50,15 +43,16 @@ public class LoginDisplay extends ParentClass{
 					+ ">> ");
 			pass = scan.nextLine();
 			
-			if (BCrypt.checkpw(pass, jdbcImpl.getHashedPassword(username))) break;
+			if (BCrypt.checkpw(pass, jdbcImpl.getHashedPassword(username))) {
+				ClearConsoleScreen.clearScreen();
+				manageDisplay.pushDisplay(userDisplay);
+				return;
+			}
 			else {
 				System.out.println("\nEmail and password does not match. Please try again.");
 				continue;
 			}
 		}
-		
-		new ClearConsoleScreen();
-		manageDisplay.pushDisplay(userDisplay);
 	}
 	
 	public int getAcctId() {

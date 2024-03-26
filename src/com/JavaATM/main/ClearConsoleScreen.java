@@ -1,8 +1,12 @@
 package com.JavaATM.main;
 
 public class ClearConsoleScreen {
-
-	public ClearConsoleScreen() {
+	
+	private ClearConsoleScreen() {
+		
+	}
+	
+	public static void clearScreen() {
 		for (int i = 0 ; i <= 50 ; i++) {
 			System.out.println("\n");
 		}
@@ -15,5 +19,10 @@ public class ClearConsoleScreen {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public static void pauseThenClearScreen() {
+		pause();
+		clearScreen();
 	}
 }

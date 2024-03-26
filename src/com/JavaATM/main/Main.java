@@ -1,23 +1,22 @@
 package com.JavaATM.main;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.JavaATM.api.JDBCImplementation;
-import com.JavaATM.dao.JavaATMDAO;
-import com.JavaATM.displays.BalanceDisplay;
 import com.JavaATM.displays.DisclaimerDisplay;
-import com.JavaATM.displays.EditUserDetailsDisplay;
-import com.JavaATM.displays.MainDisplay;
+import com.JavaATM.displays.ViewDetailsDisplay;
 
 public class Main {
 	
 	public static void main(String[] args) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("Bean.xml");
-		DisclaimerDisplay disclaimer = context.getBean("disclaimerDisplay",DisclaimerDisplay.class);
-
-		disclaimer.show();
+//		DisclaimerDisplay disclaimer = context.getBean("disclaimerDisplay",DisclaimerDisplay.class);
+//		
+//		
+//		disclaimer.show();
+		
+		ViewDetailsDisplay view = context.getBean("viewDetailsDisplay",ViewDetailsDisplay.class);
+		view.show();
 		
 //		BalanceDisplay balanceDisplay = context.getBean("balanceDisplay",BalanceDisplay.class);
 //		balanceDisplay.show();
@@ -29,6 +28,7 @@ public class Main {
 //            System.out.println(beanName);
 //        }
 
-//		((ClassPathXmlApplicationContext) context).close();
+		System.out.println("Application closed!");
+		((ClassPathXmlApplicationContext) context).close();
 	}
 }

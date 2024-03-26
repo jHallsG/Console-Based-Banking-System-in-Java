@@ -26,12 +26,7 @@ public class MainDisplay extends ParentClass{
 
 	@Override
 	public void show() {
-		JavaATMDAO dao = JavaATMDAO.getInstance();
-		
-		System.out.println(dao.getName());
-		
-		int acct = loginDisplay.getAcctId();
-		String name = jdbcImpl.getName(acct);
+		String name = jdbcImpl.getName(loginDisplay.getAcctId());
 		String embolden = "\033[1m" + name + "\033[0m";
 		String padding = " ".repeat((10 - name.length())/2);
 		int retry = 0;
@@ -40,7 +35,7 @@ public class MainDisplay extends ParentClass{
 				+ "+----------------------------------------------------------------+\n"
 				+ "| Hello %s%s%s, what would you like to do today?             |\n"
 				+ "+---------+------------------------------------------------------+\n"
-				+ "|    1    |   Edit User Details                                  |\n"
+				+ "|    1    |   View User Details                                  |\n"
 				+ "|    2    |   Check Balance                                      |\n"
 				+ "|    3    |   Deposit                                            |\n"
 				+ "|    4    |   Money Transfer                                     |\n"
@@ -53,16 +48,16 @@ public class MainDisplay extends ParentClass{
 			char options = scan.next().charAt(0);
 			switch (options) {
 			case '1':
-				new ClearConsoleScreen();
+				ClearConsoleScreen.clearScreen();
 				manageDisplay.pushDisplay(editDisplay);
 				break;
 			case '2':
-				new ClearConsoleScreen();
+				ClearConsoleScreen.clearScreen();
 				manageDisplay.pushDisplay(balanceDisplay);
 				manageDisplay.popDisplay();
 				break;
 			case '3':
-				new ClearConsoleScreen();
+				ClearConsoleScreen.clearScreen();
 				manageDisplay.pushDisplay(depositDisplay);
 				manageDisplay.popDisplay();
 				break;

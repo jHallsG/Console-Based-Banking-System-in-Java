@@ -17,6 +17,7 @@ import com.JavaATM.displays.LoginDisplay;
 import com.JavaATM.displays.ManageDisplay;
 import com.JavaATM.displays.MoneyTransferDisplay;
 import com.JavaATM.displays.RegisterDisplay;
+import com.JavaATM.displays.ViewDetailsDisplay;
 import com.JavaATM.displays.MainDisplay;
 import com.JavaATM.displays.ViewTransactionsDisplay;
 import com.JavaATM.displays.WelcomeDisplay;
@@ -38,6 +39,7 @@ public abstract class ParentClass implements ConsoleDisplays{
 	protected BalanceDisplay balanceDisplay;
 	protected JDBCImplementation jdbcImpl;
 	protected EditUserDetailsDisplay editUserDetailsDisplay;
+	protected ViewDetailsDisplay viewDetailsDisplay;
 	
 	public ParentClass() {};
 	

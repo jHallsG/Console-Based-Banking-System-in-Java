@@ -33,9 +33,7 @@ public class BalanceDisplay extends ParentClass{
 				+ "|         PHP: %s%s%s         |\n"
 				+ "+--------------------------------+\n",padding,formatted,padding);
 		
-		
-		ClearConsoleScreen.pause();
-		new ClearConsoleScreen();
+		ClearConsoleScreen.pauseThenClearScreen();
 		manageDisplay.popDisplay();
 	}
 }
