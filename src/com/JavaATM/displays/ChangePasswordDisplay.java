@@ -73,24 +73,4 @@ public class ChangePasswordDisplay extends ParentClass{
 		ClearConsoleScreen.pauseThenClearScreen();
 		manageDisplay.popDisplay();
 	}
-	
-public boolean validateSuccessfulChangePassword(String uPass, String confirmPass) {
-		
-		if(uPass.equals(confirmPass)) {
-			System.out.println("\nPassword successfully updated!");
-				
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-				
-			return true;
-		} else {
-			System.out.println("\nPassword mismatch. Please try again!");
-		}
-		
-		return false;
-	}
 }

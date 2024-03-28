@@ -1,6 +1,5 @@
 package com.JavaATM.displays;
 
-import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -17,13 +16,13 @@ public class RegisterDisplay extends ParentClass{
 		super(manageDisplay,jdbcImpl);
 	}
 	
-	private Scanner scan = new Scanner(System.in);
 	private String account, pass, confirmPass, email;
 	private static final String emailPattern = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 	private static final Pattern pattern = Pattern.compile(emailPattern);
 
 	@Override
 	public void show() {
+		
 		while(true) {
 			System.out.print(""
 					+ "+-------------------------------------------+\n"
@@ -85,6 +84,7 @@ public class RegisterDisplay extends ParentClass{
 					+ "+--------------------------------------+\n"
 					+ ">> ");
 			confirmPass = scan.nextLine();
+			
 			
 			// Register and generate account id. If no ID is generated, it means failed and prompt to try again.
 			if (pass.equals(confirmPass)) {

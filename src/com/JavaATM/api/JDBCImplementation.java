@@ -66,6 +66,11 @@ public class JDBCImplementation {
 		return userDetails;
 	}
 	
+	public List<JavaATMDAO> getAcctDetails(int account_id){
+		List<JavaATMDAO> acctDetails = jdbcTemplate.query("SELECT * FROM account WHERE account_id = ?", new BeanPropertyRowMapper<JavaATMDAO>(JavaATMDAO.class), account_id);
+		return acctDetails;
+	}
+	
 	public int updateUserDetails(String name, String address, String contact, int acct) {
 		Object[] args = {name,address,contact,acct};
 		jdbcTemplate.update("INSERT INTO transaction (account_id, transaction_type) VALUES (?,?)",acct,"edit_profile");
@@ -73,7 +78,7 @@ public class JDBCImplementation {
 	}
 	
 	public int updatePassword(String password, int acct) {
-		jdbcTemplate.update("INSERT INTO transaction (account_id, transaction_type) VALUES (?,?)",acct,"edit_profile");
+		jdbcTemplate.update("INSERT INTO transaction (account_id, transaction_type) VALUES (?,?)",acct,"change_password");
 		return jdbcTemplate.update("UPDATE credentials SET password = ? WHERE account_id = ?",passwordHash(password),acct);
 	}
 	
@@ -82,7 +87,7 @@ public class JDBCImplementation {
 	}
 	
 	public int updateBalance(int acct, int deposit_amt) {
-		jdbcTemplate.update("INSERT INTO transaction (account_id, amount,transaction_type) VALUES (?,?)",acct,deposit_amt,"deposit");
+		jdbcTemplate.update("INSERT INTO transaction (account_id, amount,transaction_type) VALUES (?,?,?)",acct,deposit_amt,"deposit");
 		return jdbcTemplate.update("UPDATE account SET balance = ? WHERE account_id = ?",deposit_amt,acct);
 	}
 }

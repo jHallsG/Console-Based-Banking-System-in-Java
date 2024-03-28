@@ -10,13 +10,13 @@ public class Main {
 	
 	public static void main(String[] args) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("Bean.xml");
-//		DisclaimerDisplay disclaimer = context.getBean("disclaimerDisplay",DisclaimerDisplay.class);
-//		
-//		
-//		disclaimer.show();
+		DisclaimerDisplay disclaimer = context.getBean("disclaimerDisplay",DisclaimerDisplay.class);
 		
-		ViewDetailsDisplay view = context.getBean("viewDetailsDisplay",ViewDetailsDisplay.class);
-		view.show();
+		
+		disclaimer.show();
+		
+//		ViewDetailsDisplay view = context.getBean("viewDetailsDisplay",ViewDetailsDisplay.class);
+//		view.show();
 		
 //		BalanceDisplay balanceDisplay = context.getBean("balanceDisplay",BalanceDisplay.class);
 //		balanceDisplay.show();
@@ -32,3 +32,16 @@ public class Main {
 		((ClassPathXmlApplicationContext) context).close();
 	}
 }
+
+
+
+
+
+
+/*
+ * FUTURE WORKS:
+ * 1. Work on jdbcImpl methods to check successful database changes before reflecting it on transactions
+ *		ex: successful deposit before showing it on transaction history
+ * 2. 
+ */
+

@@ -36,8 +36,8 @@ public class ViewDetailsDisplay extends ParentClass{
 		}
 		
 		String padding1 = " ".repeat(29-name.length());
-		String padding2 = " ".repeat(26-address.length());
-		String padding3 = " ".repeat(24-contactNum.length());
+		String padding2 = " ".repeat(26-(address != null ? address.length() : 4));
+		String padding3 = " ".repeat(24-(contactNum != null ? contactNum.length() : 4));
 		System.out.printf(""
 				+ "+------------------------------------+\n"
 				+ "|            USER DETAILS            |\n"
@@ -53,7 +53,6 @@ public class ViewDetailsDisplay extends ParentClass{
 	}
 	
 	private List<JavaATMDAO> getDetails() {
-//		return jdbcImpl.getUserDetails(loginDisplay.getAcctId());
-		return jdbcImpl.getUserDetails(1);
+		return jdbcImpl.getUserDetails(loginDisplay.getAcctId());
 	}
 }

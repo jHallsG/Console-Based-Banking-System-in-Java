@@ -16,7 +16,7 @@ public class JavaATMDAO {
 	}
 
 	private int account_id;
-	private int account_number;
+	private String account_number;
 	private int balance;
 	private String name;
 	private String address;
@@ -43,7 +43,7 @@ public class JavaATMDAO {
 		return account_id;
 	}
 
-	public int getAccount_number() {
+	public String getAccount_number() {
 		return account_number;
 	}
 
@@ -91,7 +91,7 @@ public class JavaATMDAO {
 		this.account_id = account_id;
 	}
 
-	public void setAccount_number(int account_number) {
+	public void setAccount_number(String account_number) {
 		this.account_number = account_number;
 	}
 
