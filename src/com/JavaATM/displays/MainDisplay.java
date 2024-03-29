@@ -9,6 +9,7 @@ import com.JavaATM.api.JDBCImplementation;
 import com.JavaATM.dao.JavaATMDAO;
 import com.JavaATM.main.ClearConsoleScreen;
 import com.JavaATM.main.ParentClass;
+import com.JavaATM.main.TransactionProcessor;
 
 @Component
 public class MainDisplay extends ParentClass{
@@ -20,13 +21,23 @@ public class MainDisplay extends ParentClass{
 	@Autowired
 	JDBCImplementation jdbcImpl;;
 	
-	@Lazy		// don't delete, causes a Circular Reference error
+//	@Lazy		// don't delete, causes a Circular Reference error
+//	@Autowired
+//	LoginDisplay loginDisplay;
+	
 	@Autowired
-	LoginDisplay loginDisplay;
+	TransactionProcessor transactionProcessor;
+	
+	@Autowired
+	MoneyTransferDisplay moneyTransferDisplay;
+	
+	@Autowired
+	ViewTransactionsDisplay viewTransactionsDisplay;
 
 	@Override
 	public void show() {
-		String name = jdbcImpl.getName(loginDisplay.getAcctId());
+//		String name = jdbcImpl.getName(loginDisplay.getAcctId());
+		String name = jdbcImpl.getName(transactionProcessor.returnAcctId());
 		String embolden = "\033[1m" + name + "\033[0m";
 		String padding = " ".repeat((10 - name.length())/2);
 		int retry = 0;
@@ -50,26 +61,27 @@ public class MainDisplay extends ParentClass{
 			case '1':
 				ClearConsoleScreen.clearScreen();
 				manageDisplay.pushDisplay(editDisplay);
-				break;
+				return;
 			case '2':
 				ClearConsoleScreen.clearScreen();
 				manageDisplay.pushDisplay(balanceDisplay);
-				manageDisplay.popDisplay();
-				break;
+				return;
 			case '3':
 				ClearConsoleScreen.clearScreen();
 				manageDisplay.pushDisplay(depositDisplay);
-				manageDisplay.popDisplay();
-				break;
+				return;
 			case '4':
-				System.out.println("Enter recipient number");
-				break;
+				ClearConsoleScreen.clearScreen();
+				manageDisplay.pushDisplay(moneyTransferDisplay);
+				return;
 			case '5':
-				System.out.println("\nExiting application... ");
+				ClearConsoleScreen.clearScreen();
+				manageDisplay.pushDisplay(viewTransactionsDisplay);
 				return;
 			case '6':
+				ClearConsoleScreen.clearScreen();
 				manageDisplay.popDisplay();
-				break;
+				return;
 			default:
 				retry++;
 				if (retry == 3) {

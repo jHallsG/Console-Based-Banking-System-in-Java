@@ -3,28 +3,27 @@ package com.JavaATM.displays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import com.JavaATM.api.JDBCImplementation;
 import com.JavaATM.dao.JavaATMDAO;
 import com.JavaATM.main.ClearConsoleScreen;
 import com.JavaATM.main.ParentClass;
+import com.JavaATM.main.TransactionProcessor;
 
 @Component
 public class DepositDisplay extends ParentClass{
 	
 	private int depositAmt;
 	
-	@Lazy
-	@Autowired
-	LoginDisplay loginDisplay;
-	
 	@Autowired
 	JDBCImplementation jdbcImpl;
 	
 	@Autowired
 	ManageDisplay manageDisplay;
+	
+	@Autowired
+	TransactionProcessor transactionProcessor;
 
 	@Override
 	public void show() {
@@ -36,40 +35,42 @@ public class DepositDisplay extends ParentClass{
 			balance = item.getBalance();
 		}
 		
-		String padding1 = " ".repeat(24-acct.length());
-		String padding2 = " ".repeat(21-Double.toString(balance).length());
+		String padding1 = " ".repeat(21-acct.length());
+		String padding2 = " ".repeat(15-Double.toString(balance).length());
 		
+		while (true) {
+			System.out.printf(""
+					+ "+--------------------------------------------+\n"
+					+ "|                    Deposit                 |\n"
+					+ "+--------------------------------------------+\n"
+					+ "| Account Number: 	%s%s|\n"
+					+ "| Current Balance:	PHP %,.2f%s|\n"
+					+ "+--------------------------------------------+\n"
+					+ "\n"
+					+ "Please enter deposit amount: \n"
+					+ ">> ",acct,padding1,balance,padding2);
 			
+			depositAmt = scan.nextInt();
+			
+			if (depositAmt < 100) {
+				System.out.println("\nError: Minimum deposit allowed is 100\n");
+				continue;
+			} else {
+				break;
+			}
+		}
 		
-		
-		System.out.printf(""
-				+ "+--------------------------------------------+\n"
-				+ "|                    Deposit                 |\n"
-				+ "+--------------------------------------------+\n"
-				+ "| Account Number: 	%s%s|\n"
-				+ "| Current Balance:	PHP%f%s|\n"
-				+ "+--------------------------------------------+\n"
-				+ "\n"
-				+ "Please enter deposit amount: \n"
-				+ ">> ",acct,padding1,balance,padding2);
-		
-		depositAmt = scan.nextInt();
-		
-		processDeposit(depositAmt);
+		if (transactionProcessor.deposit(transactionProcessor.returnAcctId(),depositAmt) == 1) {
+			System.out.println("\n" + depositAmt + " successfully deposited to your account");
+		} else {
+			System.out.println("Operation failed. Please try again.");
+		}
 		ClearConsoleScreen.pauseThenClearScreen();
 		manageDisplay.popDisplay();
 		
 	}
 	
-	private void processDeposit(int amount) {
-		if (jdbcImpl.updateBalance(loginDisplay.getAcctId(), amount) > 0) {
-			System.out.printf("\nYou have successfully deposited %s into your account",depositAmt);
-		} else {
-			System.out.println("\nDeposit failed. Please try again later.");
-		}
-	}
-	
 	private List<JavaATMDAO> getAcctDetails(){
-		return jdbcImpl.getAcctDetails(loginDisplay.getAcctId());
+		return jdbcImpl.getAcctDetails(transactionProcessor.returnAcctId());
 	}
 }

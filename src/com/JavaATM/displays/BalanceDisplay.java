@@ -30,7 +30,7 @@ public class BalanceDisplay extends ParentClass{
 				+ "+--------------------------------+\n"
 				+ "|             BALANCE            |\n"
 				+ "+--------------------------------+\n"
-				+ "|         PHP: %s%s%s         |\n"
+				+ "|         PHP: %s%s%s          |\n"
 				+ "+--------------------------------+\n",padding,formatted,padding);
 		
 		ClearConsoleScreen.pauseThenClearScreen();

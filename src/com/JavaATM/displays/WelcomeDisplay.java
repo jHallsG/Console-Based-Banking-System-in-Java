@@ -28,6 +28,7 @@ public class WelcomeDisplay extends ParentClass{
 		
 		while (true) {
 			char options = scan.next().charAt(0);
+
 			switch (options) {
 				case '1':
 					ClearConsoleScreen.clearScreen();

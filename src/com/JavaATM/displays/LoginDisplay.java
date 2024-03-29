@@ -10,11 +10,12 @@ import com.JavaATM.main.ParentClass;
 @Component
 public class LoginDisplay extends ParentClass{
 	
-	public LoginDisplay(ManageDisplay manageDisplay, MainDisplay userDisplay, JDBCImplementation jdbcImpl) {
-		super(manageDisplay, userDisplay, jdbcImpl);
+	public LoginDisplay(ManageDisplay manageDisplay, MainDisplay mainDisplay, JDBCImplementation jdbcImpl) {
+		super(manageDisplay, mainDisplay, jdbcImpl);
 	}
 	
 	private String username, pass;
+	
 
 	@Override
 	public void show() {
@@ -45,7 +46,7 @@ public class LoginDisplay extends ParentClass{
 			
 			if (BCrypt.checkpw(pass, jdbcImpl.getHashedPassword(username))) {
 				ClearConsoleScreen.clearScreen();
-				manageDisplay.pushDisplay(userDisplay);
+				manageDisplay.pushDisplay(mainDisplay);
 				return;
 			}
 			else {

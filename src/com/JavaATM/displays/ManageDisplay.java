@@ -15,10 +15,12 @@ public class ManageDisplay {
 	}
 	
 	public void popDisplay() {
-        if (!displayStack.isEmpty()) {
-            displayStack.pop();
-            ConsoleDisplays display = displayStack.peek();
-            display.show();
+        displayStack.pop();
+        if ((displayStack.peek() instanceof LoginDisplay)) {
+        	displayStack.pop();
         }
+        
+        ConsoleDisplays display = displayStack.peek();
+        display.show();
     }
 }

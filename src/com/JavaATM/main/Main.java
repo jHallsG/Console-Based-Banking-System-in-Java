@@ -4,7 +4,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.JavaATM.displays.DisclaimerDisplay;
-import com.JavaATM.displays.ViewDetailsDisplay;
 
 public class Main {
 	
@@ -12,17 +11,8 @@ public class Main {
 		ApplicationContext context = new ClassPathXmlApplicationContext("Bean.xml");
 		DisclaimerDisplay disclaimer = context.getBean("disclaimerDisplay",DisclaimerDisplay.class);
 		
-		
 		disclaimer.show();
-		
-//		ViewDetailsDisplay view = context.getBean("viewDetailsDisplay",ViewDetailsDisplay.class);
-//		view.show();
-		
-//		BalanceDisplay balanceDisplay = context.getBean("balanceDisplay",BalanceDisplay.class);
-//		balanceDisplay.show();
-		
-		
-		
+	
 //		String[] beanNames = context.getBeanDefinitionNames();
 //        for (String beanName : beanNames) {
 //            System.out.println(beanName);
@@ -42,6 +32,9 @@ public class Main {
  * FUTURE WORKS:
  * 1. Work on jdbcImpl methods to check successful database changes before reflecting it on transactions
  *		ex: successful deposit before showing it on transaction history
- * 2. 
+ * 2. Passwords are shown as plain text :(
+ * 3. Disallow negative deposits
+ * 4. Transfer money needs some improvement esp error handling.
+ * 5. Add some cancel options when registering, editing, transfer, deposit
  */
 

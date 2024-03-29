@@ -87,7 +87,23 @@ public class JDBCImplementation {
 	}
 	
 	public int updateBalance(int acct, int deposit_amt) {
-		jdbcTemplate.update("INSERT INTO transaction (account_id, amount,transaction_type) VALUES (?,?,?)",acct,deposit_amt,"deposit");
-		return jdbcTemplate.update("UPDATE account SET balance = ? WHERE account_id = ?",deposit_amt,acct);
+		return jdbcTemplate.update("UPDATE account SET balance = ? WHERE account_id = ?",getBalance(acct) + deposit_amt,acct);
+	}
+	
+	public int moneyTransfer(int acct, int transfer_amt) {
+		return jdbcTemplate.update("UPDATE account SET balance = ? WHERE account_id = ?",getBalance(acct) - transfer_amt,acct);
+	}
+	
+	public void updateTransaction(int acctId, String transactionType, int amt) {
+		jdbcTemplate.update("INSERT INTO transaction (account_id, amount, transaction_type) VALUES (?,?,?)",acctId,amt,transactionType);
+	}
+	
+	public int getAcctIdByAcctNum(String acctNum) {
+		return jdbcTemplate.queryForObject("SELECT account_id FROM account WHERE account_number = ?",Integer.class,acctNum);
+	}
+	
+	public List<JavaATMDAO> viewTransactions(int acctId){
+		List<JavaATMDAO> list =  jdbcTemplate.query("SELECT transaction_type, amount, transaction_date FROM transaction WHERE account_id = ?", new BeanPropertyRowMapper<>(JavaATMDAO.class), acctId);
+		return list;
 	}
 }

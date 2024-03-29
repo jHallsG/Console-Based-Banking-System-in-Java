@@ -33,7 +33,7 @@ public abstract class ParentClass implements ConsoleDisplays{
 	protected LoginDisplay loginDisplay;
 	protected MoneyTransferDisplay moneyTransferDisplay;
 	protected RegisterDisplay registerDisplay;
-	protected MainDisplay userDisplay;
+	protected MainDisplay mainDisplay;
 	protected ViewTransactionsDisplay viewTransactionsDisplay;
 	protected WelcomeDisplay welcomeDisplay;
 	protected BalanceDisplay balanceDisplay;
@@ -52,9 +52,9 @@ public abstract class ParentClass implements ConsoleDisplays{
 	
 	// Constructor for Login Page
 	@Autowired
-	public ParentClass(ManageDisplay manageDisplay, MainDisplay userDisplay, JDBCImplementation jdbcImpl) {
+	public ParentClass(ManageDisplay manageDisplay, MainDisplay mainDisplay, JDBCImplementation jdbcImpl) {
 		this.manageDisplay = manageDisplay;
-		this.userDisplay = userDisplay;
+		this.mainDisplay = mainDisplay;
 		this.jdbcImpl = jdbcImpl;
 	}
 	

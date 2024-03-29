@@ -1,19 +1,19 @@
 package com.JavaATM.dao;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class JavaATMDAO {
 	
 	private static JavaATMDAO instance = null;
 	
-	private JavaATMDAO() {
-		// private to prevent instantiation of this class
-	}
-	
-	public static JavaATMDAO getInstance() {
-		if (instance == null) instance = new JavaATMDAO();
-		return instance;
-	}
+//	private JavaATMDAO() {
+//		// private to prevent instantiation of this class
+//	}
+//	
+//	public static JavaATMDAO getInstance() {
+//		if (instance == null) instance = new JavaATMDAO();
+//		return instance;
+//	}
 
 	private int account_id;
 	private String account_number;
@@ -25,18 +25,18 @@ public class JavaATMDAO {
 	private String password;
 	private int transaction_id;
 	private String transaction_type;
-	private int amount;
-	private LocalDate transaction_date;
+	private Integer amount;
+	private LocalDateTime transaction_date;
 
-	@Override
-	public String toString() {
-		String display =  ""
-				+ "Account ID: " + account_id +"\n"
-				+ "Name: " + name + "\n"
-				+ "Address: " + address + "\n"
-				+ "Contact Number: " + contact_number;
-		return display;
-	}
+//	@Override
+//	public String toString() {
+//		String display =  ""
+//				+ "Account ID: " + account_id +"\n"
+//				+ "Name: " + name + "\n"
+//				+ "Address: " + address + "\n"
+//				+ "Contact Number: " + contact_number;
+//		return display;
+//	}
 	
 	
 	public int getAccount_id() {
@@ -79,11 +79,11 @@ public class JavaATMDAO {
 		return transaction_type;
 	}
 
-	public int getAmount() {
+	public Integer getAmount() {
 		return amount;
 	}
 
-	public LocalDate getTransaction_date() {
+	public LocalDateTime getTransaction_date() {
 		return transaction_date;
 	}
 
@@ -127,11 +127,11 @@ public class JavaATMDAO {
 		this.transaction_type = transaction_type;
 	}
 
-	public void setAmount(int amount) {
+	public void setAmount(Integer amount) {
 		this.amount = amount;
 	}
 
-	public void setTransaction_date(LocalDate transaction_date) {
+	public void setTransaction_date(LocalDateTime transaction_date) {
 		this.transaction_date = transaction_date;
 	}
 
