@@ -1,12 +1,9 @@
 package com.JavaATM.displays;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.JavaATM.api.JDBCImplementation;
 import com.JavaATM.dao.JavaATMDAO;
@@ -16,15 +13,10 @@ import com.JavaATM.main.TransactionProcessor;
 
 @Component
 public class ViewTransactionsDisplay extends ParentClass{
-
-	@Autowired
-	JDBCImplementation jdbcImpl;
 	
-	@Autowired
-	TransactionProcessor transactionProcessor;
-	
-	@Autowired
-	ManageDisplay manageDisplay;
+	public ViewTransactionsDisplay(ManageDisplay manageDisplay, JDBCImplementation jdbcImpl, TransactionProcessor transactionProcessor) {
+		super(manageDisplay, jdbcImpl, transactionProcessor);
+	}
 	
 	@Override
 	public void show() {

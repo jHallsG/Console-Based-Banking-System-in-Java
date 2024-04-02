@@ -10,14 +10,9 @@ import com.JavaATM.main.ParentClass;
 @Component
 public class EditDisplay extends  ParentClass{
 	
-	@Autowired
-	private ChangePasswordDisplay changePasswordDisplay;
-	@Autowired
-	private EditUserDetailsDisplay editUserDetailsDisplay;
-	@Autowired
-	private ManageDisplay manageDisplay;
-	@Autowired
-	private ViewDetailsDisplay viewDetailsDisplay;
+	public EditDisplay(ChangePasswordDisplay changePasswordDisplay, EditUserDetailsDisplay editUserDetailsDisplay, ManageDisplay manageDisplay, ViewDetailsDisplay viewDetailsDisplay) {
+		super(changePasswordDisplay,editUserDetailsDisplay,manageDisplay,viewDetailsDisplay);
+	}
 	
 	@Override
 	public void show() {
@@ -42,22 +37,22 @@ public class EditDisplay extends  ParentClass{
 			case '1':
 				ClearConsoleScreen.clearScreen();
 				manageDisplay.pushDisplay(viewDetailsDisplay);
-				break;
+				return;
 				
 			case '2':
 				ClearConsoleScreen.clearScreen();
 				manageDisplay.pushDisplay(editUserDetailsDisplay);
-				break;
+				return;
 				
 			case '3':
 				ClearConsoleScreen.clearScreen();
 				manageDisplay.pushDisplay(changePasswordDisplay);
-				break;
+				return;
 				
 			case '4':
 				ClearConsoleScreen.clearScreen();
 				manageDisplay.popDisplay();
-				break;
+				return;
 				
 			default:
 				retry++;

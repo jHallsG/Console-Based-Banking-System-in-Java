@@ -1,6 +1,5 @@
 package com.JavaATM.displays;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.JavaATM.api.JDBCImplementation;
@@ -11,14 +10,9 @@ import com.JavaATM.main.TransactionProcessor;
 @Component
 public class MoneyTransferDisplay extends ParentClass{
 	
-	@Autowired
-	TransactionProcessor transactionProcessor;
-	
-	@Autowired
-	ManageDisplay manageDisplay;
-	
-	@Autowired
-	JDBCImplementation jdbcImpl;
+	public MoneyTransferDisplay(ManageDisplay manageDisplay, JDBCImplementation jdbcImpl, TransactionProcessor transactionProcessor) {
+		super(manageDisplay, jdbcImpl, transactionProcessor);
+	}
 	
 	private String destinationAcct;
 	private int transferAmt;

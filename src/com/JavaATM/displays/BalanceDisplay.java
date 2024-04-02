@@ -7,22 +7,17 @@ import org.springframework.stereotype.Component;
 import com.JavaATM.api.JDBCImplementation;
 import com.JavaATM.main.ClearConsoleScreen;
 import com.JavaATM.main.ParentClass;
+import com.JavaATM.main.TransactionProcessor;
 
 @Component
 public class BalanceDisplay extends ParentClass{
 	
-	@Autowired
-	ManageDisplay manageDisplay;
-	
-	@Autowired
-	JDBCImplementation jdbcImpl;
-	
-	@Lazy
-	@Autowired
-	LoginDisplay loginDisplay;
+	public BalanceDisplay(ManageDisplay manageDisplay, JDBCImplementation jdbcImpl, TransactionProcessor transactionProcessor) {
+		super(manageDisplay, jdbcImpl,transactionProcessor);
+	}
 	
 	public void show() {
-		int balance = jdbcImpl.getBalance(loginDisplay.getAcctId());
+		int balance = jdbcImpl.getBalance(transactionProcessor.returnAcctId());
 		String formatted = String.format("%,d", balance);
 		String padding = " ".repeat((9 - formatted.length())/2);
 		

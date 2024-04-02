@@ -10,17 +10,14 @@ import org.springframework.stereotype.Component;
 import com.JavaATM.api.JDBCImplementation;
 import com.JavaATM.main.ClearConsoleScreen;
 import com.JavaATM.main.ParentClass;
+import com.JavaATM.main.TransactionProcessor;
 @Component
 @Lazy
 public class EditUserDetailsDisplay extends ParentClass{
 	
-	public EditUserDetailsDisplay(ManageDisplay manageDisplay, JDBCImplementation jdbcImpl) {
-		super(manageDisplay, jdbcImpl);
+	public EditUserDetailsDisplay(ManageDisplay manageDisplay, JDBCImplementation jdbcImpl, TransactionProcessor transactionProcessor) {
+		super(manageDisplay, jdbcImpl, transactionProcessor);
 	}
-	
-	@Lazy
-	@Autowired
-	LoginDisplay loginDisplay;
 	
 	@Override
 	public void show() {
@@ -45,7 +42,7 @@ public class EditUserDetailsDisplay extends ParentClass{
 			+ ">> ");
 		String contactNum = scan.nextLine();
 		
-		if (jdbcImpl.updateUserDetails(name, address, contactNum, loginDisplay.getAcctId()) > 0) {
+		if (jdbcImpl.updateUserDetails(name, address, contactNum, transactionProcessor.returnAcctId()) > 0) {
 			System.out.println("\nDetails successfully saved.");
 			ClearConsoleScreen.pause();
 			ClearConsoleScreen.clearScreen();

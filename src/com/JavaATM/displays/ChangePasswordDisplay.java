@@ -1,26 +1,22 @@
 package com.JavaATM.displays;
 
 import org.mindrot.jbcrypt.BCrypt;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.JavaATM.api.JDBCImplementation;
 import com.JavaATM.main.ClearConsoleScreen;
 import com.JavaATM.main.ParentClass;
+import com.JavaATM.main.TransactionProcessor;
 
 @Component
 public class ChangePasswordDisplay extends ParentClass{
-	@Autowired
-	private ManageDisplay manageDisplay;
 	
-	@Autowired
-	JDBCImplementation jdbcImpl;
-	
-	@Autowired
-	private LoginDisplay loginDisplay;
+	public ChangePasswordDisplay(ManageDisplay manageDisplay, JDBCImplementation jdbcImpl, TransactionProcessor transactionProcessor) {
+		super(manageDisplay,jdbcImpl,transactionProcessor);
+	}
 	
 	public void show() {
-		int acct = loginDisplay.getAcctId();
+		int acct = transactionProcessor.returnAcctId();
 		
 		while (true) {
 			System.out.print(""
@@ -29,8 +25,6 @@ public class ChangePasswordDisplay extends ParentClass{
 					+ "+-----------------------------+\n"
 					+ ">> ");
 			String userPass = scan.nextLine();
-			
-			loginDisplay.getAcctId();
 			
 			if (BCrypt.checkpw(userPass, jdbcImpl.getHashedPasswordByAcctId(acct))) break;
 			else {

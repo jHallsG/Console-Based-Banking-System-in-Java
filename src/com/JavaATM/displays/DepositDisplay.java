@@ -2,7 +2,6 @@ package com.JavaATM.displays;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.JavaATM.api.JDBCImplementation;
@@ -14,16 +13,11 @@ import com.JavaATM.main.TransactionProcessor;
 @Component
 public class DepositDisplay extends ParentClass{
 	
+	public DepositDisplay(ManageDisplay manageDisplay, JDBCImplementation jdbcImpl, TransactionProcessor transactionProcessor) {
+		super(manageDisplay,jdbcImpl,transactionProcessor);
+	}
+	
 	private int depositAmt;
-	
-	@Autowired
-	JDBCImplementation jdbcImpl;
-	
-	@Autowired
-	ManageDisplay manageDisplay;
-	
-	@Autowired
-	TransactionProcessor transactionProcessor;
 
 	@Override
 	public void show() {

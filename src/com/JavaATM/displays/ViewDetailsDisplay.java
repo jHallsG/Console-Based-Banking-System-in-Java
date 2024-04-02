@@ -1,29 +1,21 @@
 package com.JavaATM.displays;
 
-import com.JavaATM.main.ClearConsoleScreen;
-import com.JavaATM.main.ParentClass;
-
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import com.JavaATM.api.JDBCImplementation;
 import com.JavaATM.dao.JavaATMDAO;
+import com.JavaATM.main.ClearConsoleScreen;
+import com.JavaATM.main.ParentClass;
+import com.JavaATM.main.TransactionProcessor;
 
 @Component
 public class ViewDetailsDisplay extends ParentClass{
 
-	@Lazy
-	@Autowired
-	LoginDisplay loginDisplay;
-	
-	@Autowired
-	JDBCImplementation jdbcImpl;
-	
-	@Autowired
-	ManageDisplay manageDisplay;
+	public ViewDetailsDisplay(ManageDisplay manageDisplay, JDBCImplementation jdbcImpl, TransactionProcessor transactionProcessor) {
+		super(manageDisplay,jdbcImpl,transactionProcessor);
+	}
 	
 	@Override
 	public void show() {
@@ -53,6 +45,6 @@ public class ViewDetailsDisplay extends ParentClass{
 	}
 	
 	private List<JavaATMDAO> getDetails() {
-		return jdbcImpl.getUserDetails(loginDisplay.getAcctId());
+		return jdbcImpl.getUserDetails(transactionProcessor.returnAcctId());
 	}
 }

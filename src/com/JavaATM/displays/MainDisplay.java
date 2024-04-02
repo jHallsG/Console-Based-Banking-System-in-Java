@@ -1,12 +1,8 @@
 package com.JavaATM.displays;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import com.JavaATM.api.JDBCImplementation;
-import com.JavaATM.dao.JavaATMDAO;
 import com.JavaATM.main.ClearConsoleScreen;
 import com.JavaATM.main.ParentClass;
 import com.JavaATM.main.TransactionProcessor;
@@ -14,25 +10,24 @@ import com.JavaATM.main.TransactionProcessor;
 @Component
 public class MainDisplay extends ParentClass{
 	
-	public MainDisplay(ManageDisplay manageDisplay, EditDisplay editDisplay, BalanceDisplay balanceDisplay, DepositDisplay depositDisplay) {
-		super(manageDisplay, editDisplay,balanceDisplay, depositDisplay);
+	public MainDisplay(ManageDisplay manageDisplay, 
+			EditDisplay editDisplay, 
+			BalanceDisplay balanceDisplay, 
+			DepositDisplay depositDisplay,
+			JDBCImplementation jdbcImpl,
+			TransactionProcessor transactionProcessor,
+			MoneyTransferDisplay moneyTransferDisplay,
+			ViewTransactionsDisplay viewTransactionsDisplay) {
+		
+		super(manageDisplay, 
+				editDisplay,
+				balanceDisplay, 
+				depositDisplay,
+				jdbcImpl,
+				transactionProcessor,
+				moneyTransferDisplay,
+				viewTransactionsDisplay);
 	}
-	
-	@Autowired
-	JDBCImplementation jdbcImpl;;
-	
-//	@Lazy		// don't delete, causes a Circular Reference error
-//	@Autowired
-//	LoginDisplay loginDisplay;
-	
-	@Autowired
-	TransactionProcessor transactionProcessor;
-	
-	@Autowired
-	MoneyTransferDisplay moneyTransferDisplay;
-	
-	@Autowired
-	ViewTransactionsDisplay viewTransactionsDisplay;
 
 	@Override
 	public void show() {
@@ -46,7 +41,7 @@ public class MainDisplay extends ParentClass{
 				+ "+----------------------------------------------------------------+\n"
 				+ "| Hello %s%s%s, what would you like to do today?             |\n"
 				+ "+---------+------------------------------------------------------+\n"
-				+ "|    1    |   View User Details                                  |\n"
+				+ "|    1    |   User Details                                       |\n"
 				+ "|    2    |   Check Balance                                      |\n"
 				+ "|    3    |   Deposit                                            |\n"
 				+ "|    4    |   Money Transfer                                     |\n"
