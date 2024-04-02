@@ -48,6 +48,9 @@ CREATE TABLE Transaction (
     FOREIGN KEY (account_id) REFERENCES Account(account_id)
 );
 
+# Important Notes
+This project is not made with maven as it is just a practice project. All jars used can be seen in ".classpath" file.
+
 # Contact
 For questions or suggestions regarding this project, feel free to contact me:
 
