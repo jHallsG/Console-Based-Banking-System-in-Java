@@ -3,17 +3,6 @@ package com.JavaATM.dao;
 import java.time.LocalDateTime;
 
 public class JavaATMDAO {
-	
-	private static JavaATMDAO instance = null;
-	
-//	private JavaATMDAO() {
-//		// private to prevent instantiation of this class
-//	}
-//	
-//	public static JavaATMDAO getInstance() {
-//		if (instance == null) instance = new JavaATMDAO();
-//		return instance;
-//	}
 
 	private int account_id;
 	private String account_number;
@@ -27,17 +16,6 @@ public class JavaATMDAO {
 	private String transaction_type;
 	private Integer amount;
 	private LocalDateTime transaction_date;
-
-//	@Override
-//	public String toString() {
-//		String display =  ""
-//				+ "Account ID: " + account_id +"\n"
-//				+ "Name: " + name + "\n"
-//				+ "Address: " + address + "\n"
-//				+ "Contact Number: " + contact_number;
-//		return display;
-//	}
-	
 	
 	public int getAccount_id() {
 		return account_id;

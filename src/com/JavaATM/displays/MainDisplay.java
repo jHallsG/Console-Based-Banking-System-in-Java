@@ -34,12 +34,12 @@ public class MainDisplay extends ParentClass{
 //		String name = jdbcImpl.getName(loginDisplay.getAcctId());
 		String name = jdbcImpl.getName(transactionProcessor.returnAcctId());
 		String embolden = "\033[1m" + name + "\033[0m";
-		String padding = " ".repeat((10 - name.length())/2);
+		String padding = " ".repeat((20 - name.length())/2);
 		int retry = 0;
 		
 		System.out.printf(""
 				+ "+----------------------------------------------------------------+\n"
-				+ "| Hello %s%s%s, what would you like to do today?             |\n"
+				+ "| Hello %s%s%s, what would you like to do today?   |\n"
 				+ "+---------+------------------------------------------------------+\n"
 				+ "|    1    |   User Details                                       |\n"
 				+ "|    2    |   Check Balance                                      |\n"

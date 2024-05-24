@@ -7,8 +7,7 @@ import org.springframework.stereotype.Component;
 import com.JavaATM.main.ClearConsoleScreen;
 import com.JavaATM.main.ParentClass;
 
-@Configuration
-@ComponentScan(basePackages = "com.JavaATM")
+
 @Component()
 public class DisclaimerDisplay extends ParentClass{
 

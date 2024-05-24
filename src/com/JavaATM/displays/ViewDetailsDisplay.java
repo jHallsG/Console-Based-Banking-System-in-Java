@@ -28,7 +28,7 @@ public class ViewDetailsDisplay extends ParentClass{
 		}
 		
 		String padding1 = " ".repeat(29-name.length());
-		String padding2 = " ".repeat(26-(address != null ? address.length() : 4));
+		String padding2 = " ".repeat(50-(address != null ? address.length() : 4));
 		String padding3 = " ".repeat(24-(contactNum != null ? contactNum.length() : 4));
 		System.out.printf(""
 				+ "+------------------------------------+\n"

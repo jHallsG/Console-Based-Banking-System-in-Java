@@ -14,9 +14,9 @@ public class Main {
 		disclaimer.show();
 	
 //		String[] beanNames = context.getBeanDefinitionNames();
-//        for (String beanName : beanNames) {
-//            System.out.println(beanName);
-//        }
+//		for (String beanName : beanNames) {
+//			System.out.println(beanName);
+//		}
 
 		System.out.println("Application closed!");
 		((ClassPathXmlApplicationContext) context).close();
@@ -36,5 +36,6 @@ public class Main {
  * 3. Disallow negative deposits
  * 4. Transfer money needs some improvement esp error handling.
  * 5. Add some cancel options when registering, editing, transfer, deposit
+ * 6. Instances of negative value error when logging in to users with long names. need to check on that
  */
 
