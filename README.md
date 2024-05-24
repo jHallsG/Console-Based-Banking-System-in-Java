@@ -48,6 +48,19 @@ CREATE TABLE Transaction (
     FOREIGN KEY (account_id) REFERENCES Account(account_id)
 );
 
+# Screenshots
+![Login](https://github.com/jHallsG/Console-Based-Banking-System-in-Java/assets/134239144/142e245b-e643-4167-a4c5-23aa2e74d4d7)
+
+
+![Main Menu](https://github.com/jHallsG/Console-Based-Banking-System-in-Java/assets/134239144/53eb65dc-9daa-4463-b6dd-ad100b6655f4)
+
+
+
+![Transactions](https://github.com/jHallsG/Console-Based-Banking-System-in-Java/assets/134239144/a6615f56-ab79-4d93-a8dd-603deba5b450)
+
+# Important Notes
+This project is not made with maven as it is just a practice project. All jars used can be seen in ".classpath" file.
+
 # Contact
 For questions or suggestions regarding this project, feel free to contact me:
 
